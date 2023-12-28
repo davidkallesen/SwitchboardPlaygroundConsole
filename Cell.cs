@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-
-namespace SwitchboardPlaygroundConsole;
+﻿namespace SwitchboardPlaygroundConsole;
 
 public class Cell
 {

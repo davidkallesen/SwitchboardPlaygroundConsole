@@ -24,9 +24,9 @@ var startcell = new int[] { 4, 0 };
 var targetcell = new int[] { 0, 3 };
 
 
-var switchboard = SwitchboardFactory.Create(hmax, vmax);
+var switchboard = new Switchboard(hmax, vmax);
 
-SwitchboardHelper.SetOccupied(switchboard, 1, 0);
-SwitchboardHelper.SetInOut(switchboard, 1, 1, 0, 5);
+switchboard.SetOccupied(1, 0);
+switchboard.SetInOut(1, 1, 0, 5);
 
-SwitchboardHelper.Render(switchboard, hmax, vmax);
+ConsoleHelper.Render(switchboard);
