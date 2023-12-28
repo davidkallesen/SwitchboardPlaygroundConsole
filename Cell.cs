@@ -1,7 +1,10 @@
-﻿namespace SwitchboardPlaygroundConsole;
+﻿using System.Drawing;
+
+namespace SwitchboardPlaygroundConsole;
 
 public class Cell
 {
+    public Point Location { get; set; }
     public bool Occupied { get; set; } = false;
 
     public int In { get; set; } = -1;

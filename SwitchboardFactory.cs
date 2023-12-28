@@ -1,4 +1,6 @@
-﻿namespace SwitchboardPlaygroundConsole;
+using System.Drawing;
+
+namespace SwitchboardPlaygroundConsole;
 
 public static class SwitchboardFactory
 {
@@ -9,7 +11,10 @@ public static class SwitchboardFactory
         {
             for (var c = 0; c < hmax; c++)
             {
-                switchboard[c, r] = new Cell();
+                switchboard[c, r] = new Cell
+                {
+                    Location = new Point(c, r)
+                };
             }
         }
 
