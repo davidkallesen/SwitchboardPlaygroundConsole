@@ -33,54 +33,31 @@ public class Cell
             }
         }
 
-        var w = CellWeight();
-        if (w >= 0)
-        {
-            array[1, 1] = (char)(w + '0');
-        }
-        else
-        {
-            array[1, 1] = '*';
-        }
+        var weight = CellWeight();
+        array[1, 1] = (weight >= 0) ? (char)(weight + '0') : '*';
 
-        if (In == 0 || Out == 0)
+        char[,] template = new char[3, 3] {
+            { '\\', '|', '/' },
+            { '-', '*', '-' },
+            { '/', '|', '\\' }
+        };
+
+        int[,] connectionName = new int[3,3] {
+            { 0, 1, 2 },
+            { 7, -1, 3 },
+            { 6, 5, 4 }        };
+        //connection points are numbered from 0 to 7, starting at the top left corner and going clockwise.
+        //if a connection is in use, we need to draw the appropriate line by taking the character from the template
+        //and putting it in the right place in the array
+        for (int r = 0; r < 3; r++)
         {
-            array[0, 0] = '\\';
-        }
-        
-        if (In == 1 || Out == 1)
-        {
-            array[0, 1] = '|';
-        }
-        
-        if (In == 2 || Out == 2)
-        {
-            array[0, 2] = '/';
-        }
-        
-        if (In == 3 || Out == 3)
-        {
-            array[1, 2] = '-';
-        }
-        
-        if (In == 4 || Out == 4)
-        {
-            array[2, 2] = '\\';
-        }
-        
-        if (In == 5 || Out == 5)
-        {
-            array[2, 1] = '|';
-        }
-        
-        if (In == 6 || Out == 6)
-        {
-            array[2, 0] = '/';
-        }
-        
-        if (In == 7 || Out == 7)
-        {
-            array[1, 0] = '-';
+            for (int c = 0; c < 3; c++)
+            {
+                if (connectionName[r, c] == In || connectionName[r, c] == Out)
+                {
+                    array[r, c] = template[r, c];
+                }
+            }
         }
 
         return $"{array[z, 0]}{array[z, 1]}{array[z, 2]}";
