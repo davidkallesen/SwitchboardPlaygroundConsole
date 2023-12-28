@@ -2,7 +2,7 @@
 
 public class Cell
 {
-    public bool Occ { get; set; } = false;
+    public bool Occupied { get; set; } = false;
 
     public int In { get; set; } = -1;
 
@@ -12,7 +12,7 @@ public class Cell
 
     public string DisplayCellRow(int z)
     {
-        if (Occ)
+        if (Occupied)
         {
             return "...";
         }

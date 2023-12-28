@@ -6,7 +6,7 @@ public static class SwitchboardHelper
     {
         switchboard[x, y] = new Cell
         {
-            Occ = true
+            Occupied = true
         };
     }
 
