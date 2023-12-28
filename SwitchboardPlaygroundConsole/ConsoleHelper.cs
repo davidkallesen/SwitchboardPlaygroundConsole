@@ -21,10 +21,11 @@ public static class ConsoleHelper
                 Console.Write('|');
                 for (var c = 0; c < switchboard.MaxHorizontal; c++)
                 {
-                    Console.ForegroundColor = switchboard.GetCell(c, r).Occupied 
+                    var cell = switchboard.GetCell(c, r);
+                    Console.ForegroundColor = cell.Occupied 
                         ? ConsoleColor.Yellow 
                         : ConsoleColor.Red;
-                    Console.Write(switchboard.GetCell(c, r).DisplayCellRow(z));
+                    Console.Write(cell.DisplayCellRow(z));
                     Console.ForegroundColor = ConsoleColor.DarkGray;
                     Console.Write('|');
                 }
