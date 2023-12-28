@@ -33,7 +33,7 @@ public static class ConsoleHelper
             }
 
             Console.Write('+');
-            for (var i = 0; i < switchboard.MaxVertical; i++)
+            for (var i = 0; i < switchboard.MaxHorizontal; i++)
             {
                 Console.Write("---+");
             }
