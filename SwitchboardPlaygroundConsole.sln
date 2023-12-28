@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchboardPlaygroundConsoleTests", "SwitchboardPlaygroundConsoleTests\SwitchboardPlaygroundConsoleTests.csproj", "{142DE308-8E0B-4322-9622-4AF0366223C5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchboardPlaygroundConsole", "SwitchboardPlaygroundConsole\SwitchboardPlaygroundConsole.csproj", "{E8C8CFE5-377E-4FC7-A46F-AA1DFF2ADF3C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{142DE308-8E0B-4322-9622-4AF0366223C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142DE308-8E0B-4322-9622-4AF0366223C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142DE308-8E0B-4322-9622-4AF0366223C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142DE308-8E0B-4322-9622-4AF0366223C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8C8CFE5-377E-4FC7-A46F-AA1DFF2ADF3C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8C8CFE5-377E-4FC7-A46F-AA1DFF2ADF3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8C8CFE5-377E-4FC7-A46F-AA1DFF2ADF3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8C8CFE5-377E-4FC7-A46F-AA1DFF2ADF3C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BD434E0D-81E3-490B-B419-6B3DFB4B2718}
+	EndGlobalSection
+EndGlobal
