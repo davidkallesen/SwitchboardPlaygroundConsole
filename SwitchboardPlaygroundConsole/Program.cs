@@ -28,5 +28,9 @@ var switchboard = new Switchboard(hmax, vmax);
 
 switchboard.SetOccupied(1, 0);
 switchboard.SetInOut(1, 1, 0, 5);
+switchboard.SetInOut(0, 3, 5, 3);
+switchboard.SetInOut(1, 3, 7, 1);
+switchboard.SetInOut(1, 2, 5, 1);
+switchboard.SetInOut(0, 0, 4, 1);
 
 ConsoleHelper.Render(switchboard);
