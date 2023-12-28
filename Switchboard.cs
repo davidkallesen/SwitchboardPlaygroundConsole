@@ -47,26 +47,6 @@ public class Switchboard
         };
     }
 
-
-    public int CellWeight() {
-        // The connection points will be numbered from 0 to 7, starting at the top left corner and going clockwise.
-        //Distance between In and Out should be calculated modulo 8
-        //Weight should be calculated as follows:
-        //If in and out have a distance of 4, then it's a straight line and weight is 2
-        //If In and out have a distance of 3, then it's a 135 degree turn and weight is 3
-        //If In and out have a distance of 2, then it's a 90 degree turn and weight is 4
-        //If In and out have a distance of 1, then return -1
-        //If cell is occupied, then return -1
-        if (In == -1 || Out == -1) return -1;
-        if (In == Out) return -1;
-        var distance = Math.Abs(In - Out);
-        if (distance == 4) return 2;
-        if (distance == 3) return 3;
-        if (distance == 2) return 4;
-        if (distance == 1) return -1;
-        return -1;
-    }
-
     public Cell GetCellNW(int x, int y)
     {
         return data[x - 1, y - 1];
