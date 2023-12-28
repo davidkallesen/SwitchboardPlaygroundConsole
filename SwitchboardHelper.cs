@@ -34,7 +34,7 @@ public static class SwitchboardHelper
                 Console.WriteLine();
             }
 
-            for (var i = 0; i <= vmax; i++)
+            for (var i = 0; i < hmax; i++)
             {
                 Console.Write("---+");
             }
