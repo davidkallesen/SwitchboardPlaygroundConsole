@@ -3,6 +3,7 @@
 public class Cell
 {
     public Point Location { get; set; }
+
     public bool Occupied { get; set; } = false;
 
     public int In { get; set; } = -1;
@@ -104,4 +105,6 @@ public class Cell
         return -1;
     }
 
+    public override string ToString() 
+        => $"{nameof(Location)}: {Location}, {nameof(Occupied)}: {Occupied}, {nameof(In)}: {In}, {nameof(Out)}: {Out}, {nameof(Weight)}: {Weight}";
 }
