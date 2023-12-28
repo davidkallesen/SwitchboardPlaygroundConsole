@@ -17,8 +17,12 @@
 // The switchboard is a 2D array of Cell objects. The hmax and vmax are the horizontal and vertical size of the grid.
 using SwitchboardPlaygroundConsole;
 
-var hmax = 4;
-var vmax = 3;
+var hmax = 5;
+var vmax = 4;
+
+var startcell = new int[] { 4, 0 };
+var targetcell = new int[] { 0, 3 };
+
 
 var switchboard = SwitchboardFactory.Create(hmax, vmax);
 
