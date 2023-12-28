@@ -36,7 +36,7 @@ public class Cell
         var w = CellWeight();
         if (w >= 0)
         {
-            array[1, 1] = (char)w;
+            array[1, 1] = (char)(w + '0');
         }
         else
         {
