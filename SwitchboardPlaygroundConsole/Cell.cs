@@ -96,7 +96,7 @@ public class Cell
         //If cell is occupied, then return -1
         if (In == -1 || Out == -1) return -1;
         if (In == Out) return -1;
-        var distance = Math.Abs(In - Out);
+        var distance = Math.Min(Math.Abs(In - Out), 8-Math.Abs(In - Out));
         if (distance == 4) return 2;
         if (distance == 3) return 3;
         if (distance == 2) return 4;

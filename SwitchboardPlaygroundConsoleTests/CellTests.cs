@@ -35,6 +35,13 @@ public class CellTests
     }
 
     [Fact]
+    public void CellWeight_ReturnsThree_When0to5()
+    {
+        var cell = new Cell { In = 0, Out = 5 };
+        Assert.Equal(3, cell.CellWeight());
+    }
+
+    [Fact]
     public void CellWeight_ReturnsFour_WhenDistanceIsTwo()
     {
         var cell = new Cell { In = 0, Out = 2 };
@@ -45,13 +52,6 @@ public class CellTests
     public void CellWeight_ReturnsMinusOne_WhenDistanceIsOne()
     {
         var cell = new Cell { In = 0, Out = 1 };
-        Assert.Equal(-1, cell.CellWeight());
-    }
-
-    [Fact]
-    public void CellWeight_ReturnsMinusOne_WhenDistanceIsNotOneTwoThreeOrFour()
-    {
-        var cell = new Cell { In = 0, Out = 5 };
         Assert.Equal(-1, cell.CellWeight());
     }
 }
