@@ -29,22 +29,16 @@ public class Switchboard
 
     public void SetOccupied(int x, int y)
     {
-        data[x, y] = new Cell
-        {
-            Occupied = true,
-            In = -1,
-            Out = -1,
-        };
+        data[x, y].Occupied = true;
+        data[x, y].In = -1;
+        data[x, y].Out = -1;
     }
 
     public void SetInOut(int x, int y, int i, int o)
     {
-        data[x, y] = new Cell
-        {
-            Occupied = false,
-            In = i,
-            Out = o,
-        };
+        data[x, y].Occupied = false;
+        data[x, y].In = i;
+        data[x, y].Out = o;
     }
 
     public Cell GetCellNW(int x, int y)
