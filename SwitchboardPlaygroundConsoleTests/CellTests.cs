@@ -27,25 +27,21 @@ public class CellTests
         Assert.Equal(2, cell.CellWeight());
     }
 
-    [Fact]
-    public void CellWeight_ReturnsThree_WhenDistanceIsThree()
+    [Theory]
+    [InlineData(2, 7, 3)]
+    [InlineData(2, 3, 7)]
+    [InlineData(2, 0, 4)]
+    [InlineData(2, 4, 0)]
+    [InlineData(3, 0, 3)]
+    [InlineData(3, 3, 0)]
+    [InlineData(4, 3, 5)]
+    [InlineData(4, 5, 3)]
+    [InlineData(4, 7, 1)]
+    [InlineData(4, 1, 7)]
+    public void CellWeight_ReturnsCorrectWeight_WhenDistanceIsLegal(int expected, int @in, int @out)
     {
-        var cell = new Cell { In = 0, Out = 3 };
-        Assert.Equal(3, cell.CellWeight());
-    }
-
-    [Fact]
-    public void CellWeight_ReturnsThree_When0to5()
-    {
-        var cell = new Cell { In = 0, Out = 5 };
-        Assert.Equal(3, cell.CellWeight());
-    }
-
-    [Fact]
-    public void CellWeight_ReturnsFour_WhenDistanceIsTwo()
-    {
-        var cell = new Cell { In = 0, Out = 2 };
-        Assert.Equal(4, cell.CellWeight());
+        var cell = new Cell { In = @in, Out = @out };
+        Assert.Equal(expected, cell.CellWeight());
     }
 
     [Fact]
