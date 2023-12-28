@@ -28,6 +28,8 @@ public class Cell
 
     public bool Occupied { get; set; } = false;
 
+    public bool IsEmpty => !Occupied && In == -1 && Out == -1;
+
     private int @in = -1;
     public int In 
     { 

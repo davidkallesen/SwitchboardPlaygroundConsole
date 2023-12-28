@@ -12,16 +12,21 @@
 // Each cell is represented by a char. An empty cell is space space. A blocked cell is a #.
 // The start cell has a number from 0 to 7, indicating which of the 8 connection points is the exit point.
 // The end cell has a letter from a to h, indicating which of the 8 connection points is the entry point.
+// For ease of testing, we just assume that the start and end cells are "straight" cells, i.e. the exit and entry points
+// are on opposite sides of the cell.
 
 // The program will print the grid to the console by calling the SwitchboardHelper.Render(switchboard, hmax, vmax);
 // The switchboard is a 2D array of Cell objects. The hmax and vmax are the horizontal and vertical size of the grid.
 using SwitchboardPlaygroundConsole;
 
-var hmax = 5;
-var vmax = 4;
+var hmax = 6;
+var vmax = 5;
 
-var startcell = new int[] { 4, 0 };
-var targetcell = new int[] { 0, 3 };
+// These are the start and end cells. I assume that the two cells are already existing in the grid,
+// and have respectively their Out and In pointing "inside" the grid". 
+// We want to find the lowest weighted connection from the Out of the start cell to the In of the end cell.
+var startcell = new Point(4, 0 );
+var targetcell = new Point(0, 3 );
 
 
 var switchboard = new Switchboard(hmax, vmax);
