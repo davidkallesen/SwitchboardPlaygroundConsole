@@ -9,7 +9,7 @@ public class Cell
 
     public int Out { get; set; } = -1;
 
-    public int Weight { get; set; } = 0;
+    public int Weight => CellWeight();
 
     public string DisplayCellRow(int z)
     {
@@ -32,7 +32,16 @@ public class Cell
             }
         }
 
-        array[1, 1] = '*';
+        var w = CellWeight();
+        if (w >= 0)
+        {
+            array[1, 1] = (char)w;
+        }
+        else
+        {
+            array[1, 1] = '*';
+        }
+
         if (In == 0 || Out == 0)
         {
             array[0, 0] = '\\';
