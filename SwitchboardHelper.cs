@@ -21,19 +21,34 @@ public static class SwitchboardHelper
 
     public static void Render(Cell[,] switchboard, int hmax, int vmax)
     {
+        Console.ForegroundColor = ConsoleColor.DarkGray;
+        Console.Write('+');
+        for (var i = 0; i < hmax; i++)
+        {
+            Console.Write("---+");
+        }
+
+        Console.WriteLine();
+
         for (var r = 0; r < vmax; r++)
         {
             for (var z = 0; z < 3; z++)
             {
+                Console.Write('|');
                 for (var c = 0; c < hmax; c++)
                 {
+                    Console.ForegroundColor = switchboard[c, r].Occupied 
+                        ? ConsoleColor.Yellow 
+                        : ConsoleColor.Red;
                     Console.Write(switchboard[c, r].DisplayCellRow(z));
-                    Console.Write("|");
+                    Console.ForegroundColor = ConsoleColor.DarkGray;
+                    Console.Write('|');
                 }
 
                 Console.WriteLine();
             }
 
+            Console.Write('+');
             for (var i = 0; i < hmax; i++)
             {
                 Console.Write("---+");
@@ -41,5 +56,7 @@ public static class SwitchboardHelper
 
             Console.WriteLine();
         }
+
+        Console.ForegroundColor = ConsoleColor.DarkGray;
     }
 }
