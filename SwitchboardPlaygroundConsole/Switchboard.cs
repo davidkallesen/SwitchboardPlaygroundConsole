@@ -13,10 +13,7 @@ public class Switchboard
         {
             for (var c = 0; c < horizontal; c++)
             {
-                data[c, r] = new Cell
-                {
-                    Location = new Point(c, r)
-                };
+                data[c, r] = new Cell(new Point(c, r));
             }
         }
     }
