@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsole;
+namespace SwitchboardPlaygroundConsole;
 
 public static class SwitchboardHelper
 {
@@ -59,4 +59,17 @@ public static class SwitchboardHelper
 
         Console.ForegroundColor = ConsoleColor.DarkGray;
     }
+
+    public static Cell GetCell(Cell[,] switchboard, int[] coords) {
+        return switchboard[coords[0], coords[1]];
+    }
+
+    public static Cell N(Cell[,] switchboard, int[] coords) {
+        return GetCell(switchboard, new int[] { coords[0], coords[1] - 1 });
+    }
+    
+    public static Cell NE(Cell[,] switchboard, int[] coords) {
+        return GetCell(switchboard, new int[] { coords[0] + 1, coords[1] - 1 });
+    }
+    
 }
