@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SwitchboardPlaygroundConsole.csproj" />
     <ProjectReference Include="..\SwitchboardPlaygroundConsole\SwitchboardPlaygroundConsole.csproj" />
   </ItemGroup>
 
