@@ -32,5 +32,7 @@ switchboard.SetInOut(0, 3, 5, 3);
 switchboard.SetInOut(1, 3, 7, 1);
 switchboard.SetInOut(1, 2, 5, 1);
 switchboard.SetInOut(0, 0, 4, 1);
+switchboard.SetInOut(3, 3, 4, 4);
+switchboard.SetInOut(4, 3, 4, 5);
 
 ConsoleHelper.Render(switchboard);
