@@ -1,0 +1,16 @@
+// Train track Switchboard layout program
+// The purpose of this app is to do auto-layout of train tracks in a n x m grid of cells. 
+// The program should be able to layout the tracks in a way that finds the shortest (weighted) path between a start point
+// and an end point. Each cell in the grid has 8 connection points (corners and midpoints of each side) that can be connected. 
+// Some cells may already be occupied by a track segment. The program should be able to layout the tracks in a way that finds
+// the best path around these "obstacles".
+// In the initial version, we are mainly interested in the path algorithm, so the UI is very basic. It will just show the grid
+// as ascii text, and I already have the code to draw the result.
+
+// The program will be able to read a text file that describes the grid and the obstacles. 
+// Each char in the file is a cell. An empty cell is a space. A preoccupied cell is a #.
+// The start cell has a number from 0 to 7, indicating which of the 8 connection points is the start point.
+// The end cell has a number from 0 to 7, indicating which of the 8 connection points is the end point.
+
+// The program will be able to write a text file that describes the grid and the obstacles, and the track layout. Lets assume there is a 
+// pre-existing trackToString() function.
