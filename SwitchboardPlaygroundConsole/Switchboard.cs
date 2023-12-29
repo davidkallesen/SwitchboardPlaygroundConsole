@@ -18,25 +18,26 @@ public class Switchboard
         }
     }
 
-    public int MaxHorizontal { get; private set; }
+    public int MaxHorizontal { get; }
 
-    public int MaxVertical { get; private set; }
+    public int MaxVertical { get; }
 
     public Cell GetCell(int x, int y) => data[x, y];
 
     public Cell GetCell(Point point) => GetCell(point.X, point.Y);
-    public void SetOccupied(int x, int y)
+    
+    public void SetOccupied(Point point)
     {
-        data[x, y].Occupied = true;
-        data[x, y].In = -1;
-        data[x, y].Out = -1;
+        data[point.X, point.Y].Occupied = true;
+        data[point.X, point.Y].In = -1;
+        data[point.X, point.Y].Out = -1;
     }
 
-    public void SetInOut(int x, int y, int i, int o)
+    public void SetInOut(Point point, int i, int o)
     {
-        data[x, y].Occupied = false;
-        data[x, y].In = i;
-        data[x, y].Out = o;
+        data[point.X, point.Y].Occupied = false;
+        data[point.X, point.Y].In = i;
+        data[point.X, point.Y].Out = o;
     }
 
     public Cell? GetCellNW(Point point)
@@ -118,10 +119,12 @@ public class Switchboard
         }
         return data[target.X, target.Y];
     }
+
     private bool ExistsCellAt(Point point)
     {
         return point.X >= 0 && point.X < MaxHorizontal && point.Y >= 0 && point.Y < MaxVertical;
     }
+    
     public bool IsConnected(Cell cell1, Cell cell2)
     {
         if (cell1.Occupied || cell1.IsEmpty || cell2.Occupied || cell2.IsEmpty)
