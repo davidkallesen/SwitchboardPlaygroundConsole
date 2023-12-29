@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsole;
+namespace SwitchboardPlaygroundConsole;
 
 public class Switchboard
 {
@@ -38,43 +38,83 @@ public class Switchboard
         data[x, y].Out = o;
     }
 
-    public Cell GetCellNW(int x, int y)
+    public Cell? GetCellNW(Point point)
     {
-        return data[x - 1, y - 1];
+        var target = new Point(point.X - 1, point.Y - 1);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellN(int x, int y)
+    public Cell? GetCellN(Point point)
     {
-        return data[x, y - 1];
+        var target = new Point(point.X, point.Y - 1);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellNE(int x, int y)
+    public Cell? GetCellNE(Point point)
     {
-        return data[x + 1, y - 1];
+        var target = new Point(point.X + 1, point.Y - 1);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellW(int x, int y)
+    public Cell? GetCellW(Point point)
     {
-        return data[x - 1, y];
+        var target = new Point(point.X - 1, point.Y);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellE(int x, int y)
+    public Cell? GetCellE(Point point)
     {
-        return data[x + 1, y];
+        var target = new Point(point.X + 1, point.Y);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellSW(int x, int y)
+    public Cell? GetCellSW(Point point)
     {
-        return data[x - 1, y + 1];
+        var target = new Point(point.X - 1, point.Y + 1);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellS(int x, int y)
+    public Cell? GetCellS(Point point)
     {
-        return data[x, y + 1];
+        var target = new Point(point.X, point.Y + 1);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 
-    public Cell GetCellSE(int x, int y)
+    public Cell? GetCellSE(Point point)
     {
-        return data[x + 1, y + 1];
+        var target = new Point(point.X + 1, point.Y + 1);
+        if (!ExistsCellAt(target))
+        {
+            return null;
+        }
+        return data[target.X, target.Y];
     }
 }
