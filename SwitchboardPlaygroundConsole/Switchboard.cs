@@ -26,19 +26,9 @@ public class Switchboard
 
     public Cell GetCell(Point point) => GetCell(point.X, point.Y);
     
-    public void SetOccupied(Point point)
-    {
-        data[point.X, point.Y].Occupied = true;
-        data[point.X, point.Y].In = -1;
-        data[point.X, point.Y].Out = -1;
-    }
+    public void SetOccupied(Point point) => GetCell(point).SetOccupied();
 
-    public void SetInOut(Point point, int i, int o)
-    {
-        data[point.X, point.Y].Occupied = false;
-        data[point.X, point.Y].In = i;
-        data[point.X, point.Y].Out = o;
-    }
+    public void SetInOut(Point point, int i, int o) => GetCell(point).SetInOut(i, o);
 
     public Cell? GetCellNW(Point point)
     {

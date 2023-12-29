@@ -2,21 +2,21 @@
 
 public class Cell
 {
-    private static char[,] displayAsciiTemplate = new char[3, 3] 
+    private static readonly char[,] displayAsciiTemplate = new char[3, 3] 
     {
         { '\\', '|', '/' },
         { '-', '*', '-' },
         { '/', '|', '\\' }
     };
 
-    private static int[,] connectionName = new int[3, 3] 
+    private static readonly int[,] connectionName = new int[3, 3] 
     {
             { 0, 1, 2 },
             { 7, -1, 3 },
             { 6, 5, 4 }        
     };
 
-    private char[,] displayAsciiGrid = new char[3, 3];
+    private readonly char[,] displayAsciiGrid = new char[3, 3];
 
     public Cell(Point location)
     {
@@ -26,29 +26,13 @@ public class Cell
 
     public Point Location { get; set; }
 
-    public bool Occupied { get; set; } = false;
+    public bool Occupied { get; set; }
 
     public bool IsEmpty => !Occupied && In == -1 && Out == -1;
 
-    private int @in = -1;
-    public int In 
-    { 
-        get => @in; 
-        set { 
-            @in = value; 
-            UpdateAsciiGrid(); 
-        } 
-    } 
+    public int In { get; private set; } = -1;
 
-    private int @out = -1;
-    public int Out 
-    { 
-        get => @out; 
-        set { 
-            @out = value; 
-            UpdateAsciiGrid(); 
-        } 
-    }
+    public int Out { get; private set; } = -1;
 
     public int Weight => CellWeight();
 
@@ -120,4 +104,20 @@ public class Cell
 
     public override string ToString()
         => $"{nameof(Location)}: {Location}, {nameof(Occupied)}: {Occupied}, {nameof(In)}: {In}, {nameof(Out)}: {Out}, {nameof(Weight)}: {Weight}";
+
+    public void SetOccupied()
+    {
+        Occupied = true;
+        In = -1;
+        Out = -1;
+        UpdateAsciiGrid();
+    }
+
+    public void SetInOut(int i, int o)
+    {
+        Occupied = false;
+        In = i;
+        Out = o;
+        UpdateAsciiGrid();
+    }
 }
