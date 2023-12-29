@@ -9,11 +9,11 @@ public class Cell
         { '/', '|', '\\' }
     };
 
-    private static readonly int[,] connectionName = new int[3, 3] 
+    private static readonly CellDirection[,] connectionName = new CellDirection[3, 3] 
     {
-            { 0, 1, 2 },
-            { 7, -1, 3 },
-            { 6, 5, 4 }        
+            { CellDirection.NW, CellDirection.N, CellDirection.NE },
+            { CellDirection.W, CellDirection.Unknown, CellDirection.E },
+            { CellDirection.SW, CellDirection.S, CellDirection.SE }        
     };
 
     private readonly char[,] displayAsciiGrid = new char[3, 3];
@@ -28,11 +28,11 @@ public class Cell
 
     public bool Occupied { get; set; }
 
-    public bool IsEmpty => !Occupied && In == -1 && Out == -1;
+    public bool IsEmpty => !Occupied && In == CellDirection.Unknown && Out == CellDirection.Unknown;
 
-    public int In { get; private set; } = -1;
+    public CellDirection In { get; private set; } = CellDirection.Unknown;
 
-    public int Out { get; private set; } = -1;
+    public CellDirection Out { get; private set; } = CellDirection.Unknown;
 
     public int Weight => CellWeight();
 
@@ -74,7 +74,7 @@ public class Cell
             return "...";
         }
 
-        if (In == -1 && Out == -1)
+        if (In == CellDirection.Unknown && Out == CellDirection.Unknown)
         {
             return "   ";
         }
@@ -92,14 +92,25 @@ public class Cell
         //If In and out have a distance of 2, then it's a 90 degree turn and weight is 4
         //If In and out have a distance of 1, then return -1
         //If cell is occupied, then return -1
-        if (In == -1 || Out == -1) return -1;
-        if (In == Out) return -1;
-        var distance = Math.Min(Math.Abs(In - Out), 8 - Math.Abs(In - Out));
-        if (distance == 4) return 2;
-        if (distance == 3) return 3;
-        if (distance == 2) return 4;
-        if (distance == 1) return -1;
-        return -1;
+        if (In == CellDirection.Unknown || Out == CellDirection.Unknown)
+        {
+            return -1;
+        }
+
+        if (In == Out)
+        {
+            return -1;
+        }
+
+        var distance = Math.Min(Math.Abs((int)In - (int)Out), 8 - Math.Abs((int)In - (int)Out));
+        return distance switch
+        {
+            4 => 2,
+            3 => 3,
+            2 => 4,
+            1 => -1,
+            _ => -1
+        };
     }
 
     public override string ToString()
@@ -108,16 +119,16 @@ public class Cell
     public void SetOccupied()
     {
         Occupied = true;
-        In = -1;
-        Out = -1;
+        In = CellDirection.Unknown;
+        Out = CellDirection.Unknown;
         UpdateAsciiGrid();
     }
 
-    public void SetInOut(int i, int o)
+    public void SetInOut(CellDirection @in, CellDirection @out)
     {
         Occupied = false;
-        In = i;
-        Out = o;
+        In = @in;
+        Out = @out;
         UpdateAsciiGrid();
     }
 }

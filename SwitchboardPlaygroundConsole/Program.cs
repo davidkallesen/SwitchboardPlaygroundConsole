@@ -32,12 +32,12 @@ var targetcell = new Point(0, 3 );
 var switchboard = new Switchboard(hmax, vmax);
 
 switchboard.SetOccupied(new Point(1, 0));
-switchboard.SetInOut(new Point( 1, 1), 0, 5);
-switchboard.SetInOut(new Point(0, 3), 5, 3);
-switchboard.SetInOut(new Point(1, 3), 7, 1);
-switchboard.SetInOut(new Point(1, 2), 5, 1);
-switchboard.SetInOut(new Point(0, 0), 4, 1);
-switchboard.SetInOut(new Point(3, 3), 4, 4);
-switchboard.SetInOut(new Point(4, 3), 4, 5);
+switchboard.SetInOut(new Point( 1, 1), CellDirection.NW, CellDirection.S);
+switchboard.SetInOut(new Point(0, 3), CellDirection.S, CellDirection.E);
+switchboard.SetInOut(new Point(1, 3), CellDirection.W, CellDirection.N);
+switchboard.SetInOut(new Point(1, 2), CellDirection.S, CellDirection.N);
+switchboard.SetInOut(new Point(0, 0), CellDirection.SE, CellDirection.N);
+switchboard.SetInOut(new Point(3, 3), CellDirection.SE, CellDirection.SE);
+switchboard.SetInOut(new Point(4, 3), CellDirection.SE, CellDirection.S);
 
 ConsoleHelper.Render(switchboard);

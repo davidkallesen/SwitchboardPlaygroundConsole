@@ -28,7 +28,7 @@ public class Switchboard
     
     public void SetOccupied(Point point) => GetCell(point).SetOccupied();
 
-    public void SetInOut(Point point, int i, int o) => GetCell(point).SetInOut(i, o);
+    public void SetInOut(Point point, CellDirection @in, CellDirection @out) => GetCell(point).SetInOut(@in, @out);
 
     public Cell? GetCellNW(Point point)
     {
@@ -129,52 +129,52 @@ public class Switchboard
             {
                 return false;
             }
-            if (target == cell2 && target.In == 4)
+            if (target == cell2 && target.In == CellDirection.SE)
             {
                 return true;
             }
         }
 
-        if (cell1.Out == 1)
+        if (cell1.Out == CellDirection.N)
         {
             var target = GetCellN(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 5)
+            if (target == cell2 && target.In == CellDirection.S)
             {
                 return true;
             }
         }
 
-        if (cell1.Out == 2)
+        if (cell1.Out == CellDirection.NE)
         {
             var target = GetCellNE(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 6)
+            if (target == cell2 && target.In == CellDirection.SW)
             {
                 return true;
             }
         }
 
-        if (cell1.Out == 3)
+        if (cell1.Out == CellDirection.E)
         {
             var target = GetCellW(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 7)
+            if (target == cell2 && target.In == CellDirection.W)
             {
                 return true;
             }
         }
 
-        if (cell1.Out == 4)
+        if (cell1.Out == CellDirection.SE)
         {
             var target = GetCellE(cell1.Location);
             if (target is null)
@@ -187,40 +187,40 @@ public class Switchboard
             }
         }
 
-        if (cell1.Out == 5)
+        if (cell1.Out == CellDirection.S)
         {
             var target = GetCellSW(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 1)
+            if (target == cell2 && target.In == CellDirection.N)
             {
                 return true;
             }
         }
 
-        if (cell1.Out == 6)
+        if (cell1.Out == CellDirection.SW)
         {
             var target = GetCellS(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 2)
+            if (target == cell2 && target.In == CellDirection.NE)
             {
                 return true;
             }
         }
 
-        if (cell1.Out == 7)
+        if (cell1.Out == CellDirection.W)
         {
             var target = GetCellSE(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 3)
+            if (target == cell2 && target.In == CellDirection.E)
             {
                 return true;
             }
