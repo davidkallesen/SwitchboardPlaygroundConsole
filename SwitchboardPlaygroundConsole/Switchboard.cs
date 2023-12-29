@@ -1,4 +1,4 @@
-namespace SwitchboardPlaygroundConsole;
+﻿namespace SwitchboardPlaygroundConsole;
 
 public class Switchboard
 {
@@ -24,6 +24,7 @@ public class Switchboard
 
     public Cell GetCell(int x, int y) => data[x, y];
 
+    public Cell GetCell(Point point) => GetCell(point.X, point.Y);
     public void SetOccupied(int x, int y)
     {
         data[x, y].Occupied = true;
@@ -116,5 +117,122 @@ public class Switchboard
             return null;
         }
         return data[target.X, target.Y];
+    }
+    private bool ExistsCellAt(Point point)
+    {
+        return point.X >= 0 && point.X < MaxHorizontal && point.Y >= 0 && point.Y < MaxVertical;
+    }
+    public bool IsConnected(Cell cell1, Cell cell2)
+    {
+        if (cell1.Occupied || cell1.IsEmpty || cell2.Occupied || cell2.IsEmpty)
+        {
+            return false;
+        }
+
+        if (cell1.Out == 0)
+        {
+            var target = GetCellNW(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 4)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 1)
+        {
+            var target = GetCellN(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 5)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 2)
+        {
+            var target = GetCellNE(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 6)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 3)
+        {
+            var target = GetCellW(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 7)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 4)
+        {
+            var target = GetCellE(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 0)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 5)
+        {
+            var target = GetCellSW(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 1)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 6)
+        {
+            var target = GetCellS(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 2)
+            {
+                return true;
+            }
+        }
+
+        if (cell1.Out == 7)
+        {
+            var target = GetCellSE(cell1.Location);
+            if (target is null)
+            {
+                return false;
+            }
+            if (target == cell2 && target.In == 3)
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 }
