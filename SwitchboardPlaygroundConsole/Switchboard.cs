@@ -122,7 +122,7 @@ public class Switchboard
             return false;
         }
 
-        if (cell1.Out == 0)
+        if (cell1.Out == CellDirection.NW)
         {
             var target = GetCellNW(cell1.Location);
             if (target is null)
@@ -163,7 +163,7 @@ public class Switchboard
 
         if (cell1.Out == CellDirection.E)
         {
-            var target = GetCellW(cell1.Location);
+            var target = GetCellE(cell1.Location);
             if (target is null)
             {
                 return false;
@@ -176,12 +176,12 @@ public class Switchboard
 
         if (cell1.Out == CellDirection.SE)
         {
-            var target = GetCellE(cell1.Location);
+            var target = GetCellSE(cell1.Location);
             if (target is null)
             {
                 return false;
             }
-            if (target == cell2 && target.In == 0)
+            if (target == cell2 && target.In == CellDirection.NW)
             {
                 return true;
             }
@@ -189,7 +189,7 @@ public class Switchboard
 
         if (cell1.Out == CellDirection.S)
         {
-            var target = GetCellSW(cell1.Location);
+            var target = GetCellS(cell1.Location);
             if (target is null)
             {
                 return false;
@@ -202,7 +202,7 @@ public class Switchboard
 
         if (cell1.Out == CellDirection.SW)
         {
-            var target = GetCellS(cell1.Location);
+            var target = GetCellSW(cell1.Location);
             if (target is null)
             {
                 return false;
@@ -215,7 +215,7 @@ public class Switchboard
 
         if (cell1.Out == CellDirection.W)
         {
-            var target = GetCellSE(cell1.Location);
+            var target = GetCellW(cell1.Location);
             if (target is null)
             {
                 return false;
