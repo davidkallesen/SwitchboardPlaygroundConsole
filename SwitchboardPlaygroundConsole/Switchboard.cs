@@ -110,6 +110,22 @@ public class Switchboard
         return data[target.X, target.Y];
     }
 
+    public Cell? getCellNeighbor(Point point, CellDirection direction)
+    {
+        return direction switch
+        {
+            CellDirection.NW => GetCellNW(point),
+            CellDirection.N => GetCellN(point),
+            CellDirection.NE => GetCellNE(point),
+            CellDirection.W => GetCellW(point),
+            CellDirection.E => GetCellE(point),
+            CellDirection.SW => GetCellSW(point),
+            CellDirection.S => GetCellS(point),
+            CellDirection.SE => GetCellSE(point),
+            _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+        };
+    }
+
     private bool ExistsCellAt(Point point)
     {
         return point.X >= 0 && point.X < MaxHorizontal && point.Y >= 0 && point.Y < MaxVertical;
@@ -122,110 +138,23 @@ public class Switchboard
             return false;
         }
 
-        if (cell1.Out == CellDirection.NW)
+        var target = getCellNeighbor(cell1.Location, cell1.Out);
+        if (target is null)
         {
-            var target = GetCellNW(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.SE)
-            {
-                return true;
-            }
+            return false;
         }
 
-        if (cell1.Out == CellDirection.N)
+        return cell1.Out switch
         {
-            var target = GetCellN(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.S)
-            {
-                return true;
-            }
-        }
-
-        if (cell1.Out == CellDirection.NE)
-        {
-            var target = GetCellNE(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.SW)
-            {
-                return true;
-            }
-        }
-
-        if (cell1.Out == CellDirection.E)
-        {
-            var target = GetCellE(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.W)
-            {
-                return true;
-            }
-        }
-
-        if (cell1.Out == CellDirection.SE)
-        {
-            var target = GetCellSE(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.NW)
-            {
-                return true;
-            }
-        }
-
-        if (cell1.Out == CellDirection.S)
-        {
-            var target = GetCellS(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.N)
-            {
-                return true;
-            }
-        }
-
-        if (cell1.Out == CellDirection.SW)
-        {
-            var target = GetCellSW(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.NE)
-            {
-                return true;
-            }
-        }
-
-        if (cell1.Out == CellDirection.W)
-        {
-            var target = GetCellW(cell1.Location);
-            if (target is null)
-            {
-                return false;
-            }
-            if (target == cell2 && target.In == CellDirection.E)
-            {
-                return true;
-            }
-        }
-
-        return false;
+            CellDirection.NW => target == cell2 && target.In == CellDirection.SE,
+            CellDirection.N => target == cell2 && target.In == CellDirection.S,
+            CellDirection.NE => target == cell2 && target.In == CellDirection.SW,
+            CellDirection.E => target == cell2 && target.In == CellDirection.W,
+            CellDirection.SE => target == cell2 && target.In == CellDirection.NW,
+            CellDirection.S => target == cell2 && target.In == CellDirection.N,
+            CellDirection.SW => target == cell2 && target.In == CellDirection.NE,
+            CellDirection.W => target == cell2 && target.In == CellDirection.E,
+            _ => false
+        };
     }
 }
