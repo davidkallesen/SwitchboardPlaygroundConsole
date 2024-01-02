@@ -1,7 +1,17 @@
+using Microsoft.VisualStudio.TestPlatform.ObjectModel.Engine.ClientProtocol;
 using SwitchboardPlaygroundConsole;
+using Xunit.Abstractions;
+
 
 public class SwitchBoardTests
 {
+    private readonly ITextOutput output;
+
+    public SwitchBoardTests(ITestOutputHelper output)
+    {
+        this.output = new TestOutputHelperAdapter(output);
+    }
+
     [Fact]
     public void IsConnected_ReturnsFalse_WhenEitherCellIsOccupiedOrEmpty()
     {
@@ -9,6 +19,7 @@ public class SwitchBoardTests
         switchboard.SetOccupied(new Point(2, 2));
         var cell1 = switchboard.GetCell(new Point(2, 2));
         var cell2 = switchboard.GetCell(new Point(1, 1));
+        ConsoleHelper.Render(switchboard, output);
         Assert.False(switchboard.IsConnected(cell1, cell2));
     }
 
@@ -22,6 +33,7 @@ public class SwitchBoardTests
         switchboard.SetInOut(p2, CellDirection.SE, CellDirection.NW);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.True(switchboard.IsConnected(cell1, cell2));
     }
 
@@ -35,6 +47,7 @@ public class SwitchBoardTests
         switchboard.SetInOut(p2, CellDirection.S, CellDirection.NE);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.True(switchboard.IsConnected(cell1, cell2));
     }
 
@@ -48,6 +61,7 @@ public class SwitchBoardTests
         switchboard.SetInOut(p2, CellDirection.NW, CellDirection.S);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.False(switchboard.IsConnected(cell1, cell2));
     }
 
@@ -61,9 +75,9 @@ public class SwitchBoardTests
         switchboard.SetInOut(p2, CellDirection.NW, CellDirection.SE);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.False(switchboard.IsConnected(cell1, cell2));
     }
-    // Add more tests for each condition in the IsConnected method
 
     [Theory]
     [InlineData(1, 1, CellDirection.SE, CellDirection.NW, 0, 0, CellDirection.SE, CellDirection.NW)]
@@ -80,11 +94,12 @@ public class SwitchBoardTests
     {
         var p1 = new Point(p1X, p1Y);
         var p2 = new Point(p2X, p2Y);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(3, 3);
         switchboard.SetInOut(p1, p1In, p1Out);
         switchboard.SetInOut(p2, p2In, p2Out);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.True(switchboard.IsConnected(cell1, cell2));
     }
 
@@ -108,6 +123,7 @@ public class SwitchBoardTests
         switchboard.SetInOut(p2, p2In, p2Out);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.False(switchboard.IsConnected(cell1, cell2));
     }
 
@@ -132,6 +148,7 @@ public class SwitchBoardTests
         switchboard.SetInOut(p2, p2In, p2Out);
         var cell1 = switchboard.GetCell(p1);
         var cell2 = switchboard.GetCell(p2);
+        ConsoleHelper.Render(switchboard, output);
         Assert.False(switchboard.IsConnected(cell1, cell2));
     }
 }
