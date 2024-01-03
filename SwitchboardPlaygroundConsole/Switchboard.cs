@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsole;
+namespace SwitchboardPlaygroundConsole;
 
 public class Switchboard
 {
@@ -156,5 +156,33 @@ public class Switchboard
             CellDirection.W => target == cell2 && target.In == CellDirection.E,
             _ => false
         };
+    }
+
+    public IEnumerable<Cell> GetCellContinuations(Cell cell1)
+    {
+        if (cell1.Out == CellDirection.Unknown)
+        {
+            yield break;
+        }
+
+        var target = getCellNeighbor(cell1.Location, cell1.Out);
+        if (target is null)
+        {
+            yield break;
+        }
+        //Since neighbor is now a legal location, we need to find the 5 legal track pieces for that location.
+        //We do this by looking at the 8 possible directions from the neighbor and finding the 5 that are legal.
+        //We then yield return each of those 5 legal directions.
+        //var legalDirections = new List<CellDirection>();
+        for (var offset = 2; offset <= 6; offset++)
+        {
+            var inDirection = cell1.Out.Opposite();
+            var outDirection = (CellDirection)(((int)inDirection + offset) % 8);
+            var cell2 = new Cell(target.Location);
+            cell2.SetInOut(inDirection, outDirection);
+
+            yield return cell2;
+        }
+        yield break;
     }
 }

@@ -151,4 +151,106 @@ public class SwitchBoardTests
         ConsoleHelper.Render(switchboard, output);
         Assert.False(switchboard.IsConnected(cell1, cell2));
     }
+
+    [Fact]
+    public void GetCellContinuations_ShouldReturnEmptyList_WhenCellIsOccupied()
+    {
+        var p1 = new Point(2, 2);
+        var switchboard = new Switchboard(5, 5);
+        switchboard.SetOccupied(p1);
+        var cell = switchboard.GetCell(p1);
+        ConsoleHelper.Render(switchboard, output);
+        Assert.Empty(switchboard.GetCellContinuations(cell));
+    }
+
+    [Fact]
+    public void GetCellContinuations_ShouldReturnEmptyList_WhenCellIsEmpty()
+    {
+        var p1 = new Point(2, 2);
+        var switchboard = new Switchboard(5, 5);
+        var cell = switchboard.GetCell(p1);
+        ConsoleHelper.Render(switchboard, output);
+        Assert.Empty(switchboard.GetCellContinuations(cell));
+    }
+
+    [Fact]
+    public void GetCellContinuations_ShouldReturnEmptyList_WhenCellHasNoLegalNeighbors()
+    {
+        var p1 = new Point(0, 0);
+        var switchboard = new Switchboard(2, 2);
+        switchboard.SetInOut(p1, CellDirection.SE, CellDirection.N);
+        var cell = switchboard.GetCell(p1);
+        ConsoleHelper.Render(switchboard, output);
+        Assert.Empty(switchboard.GetCellContinuations(cell));
+    }
+
+    [Fact]
+    public void GetCellContinuations_ShouldReturnFivePossibleContinuations_WhenCellIsConnectedN()
+    {
+        var p1 = new Point(2, 2);
+        var switchboard = new Switchboard(5, 5);
+        switchboard.SetInOut(p1, CellDirection.SE, CellDirection.N);
+        var cell = switchboard.GetCell(p1);
+        ConsoleHelper.Render(switchboard, output);
+        Assert.NotNull(cell);
+        
+        var myCell = (Cell)cell; // Casting cell? to Cell
+        var result = switchboard.GetCellContinuations(myCell);
+        Console.WriteLine(result);
+        Assert.Equal(5, switchboard.GetCellContinuations(myCell).Count());
+        foreach (var item in result)
+        {
+            Console.WriteLine(item);
+            Assert.Equal(new Point(2,1), item.Location);
+            Assert.Equal(CellDirection.S, item.In);
+        }
+    }
+
+    [Fact]
+    public void GetCellContinuations_ShouldReturnFivePossibleContinuations_WhenCellIsConnectedSE()
+    {
+        var p1 = new Point(2, 2);
+        var switchboard = new Switchboard(5, 5);
+        switchboard.SetInOut(p1, CellDirection.N, CellDirection.SE);
+        var cell = switchboard.GetCell(p1);
+        ConsoleHelper.Render(switchboard, output);
+        Assert.NotNull(cell);
+        
+        var myCell = (Cell)cell; // Casting cell? to Cell
+        var result = switchboard.GetCellContinuations(myCell);
+        Console.WriteLine(result);
+        Assert.Equal(5, switchboard.GetCellContinuations(myCell).Count());
+        foreach (var item in result)
+        {
+            Console.WriteLine(item);
+            Assert.Equal(new Point(3,3), item.Location);
+            Assert.Equal(CellDirection.NW, item.In);
+        }
+    }
+
+    [Theory]
+    [InlineData(2, 2, CellDirection.SE, CellDirection.N, 2, 1, CellDirection.S)]
+    [InlineData(2, 2, CellDirection.NW, CellDirection.SW, 1, 3, CellDirection.NE)]
+    public void GetCellContinuations_ShouldReturnFivePossibleContinuations_WhenCellIsConnected
+        (int startX, int StartY, CellDirection startIn, CellDirection startOut, 
+        int endX, int endY, CellDirection endIn)
+    {
+        var p1 = new Point(startX, StartY);
+        var switchboard = new Switchboard(5, 5);
+        switchboard.SetInOut(p1, startIn, startOut);
+        var cell = switchboard.GetCell(p1);
+        ConsoleHelper.Render(switchboard, output);
+        Assert.NotNull(cell);
+
+        var myCell = (Cell)cell; // Casting cell? to Cell
+        var result = switchboard.GetCellContinuations(myCell);
+        Console.WriteLine(result);
+        Assert.Equal(5, switchboard.GetCellContinuations(myCell).Count());
+        foreach (var item in result)
+        {
+            Console.WriteLine(item);
+            Assert.Equal(new Point(endX, endY), item.Location);
+            Assert.Equal(endIn, item.In);
+        }
+    }
 }
