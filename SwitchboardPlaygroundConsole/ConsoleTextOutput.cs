@@ -21,4 +21,9 @@ public class ConsoleTextOutput : ITextOutput
     {
         Console.Write(c);
     }
+
+    public string GetOutput()
+    {
+        throw new NotSupportedException();
+    }
 }

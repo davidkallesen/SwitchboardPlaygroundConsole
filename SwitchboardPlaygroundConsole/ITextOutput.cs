@@ -9,4 +9,6 @@ public interface ITextOutput
     void Write(string message);
 
     void Write(char c);
+
+    string GetOutput();
 }

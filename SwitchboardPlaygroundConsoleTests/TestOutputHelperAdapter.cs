@@ -1,11 +1,10 @@
-using Xunit;
+namespace SwitchboardPlaygroundConsoleTests;
 
 public class TestOutputHelperAdapter : ITextOutput
 {
-
     private readonly ITestOutputHelper _outputHelper;
 
-    private String lineBuffer = "";
+    private string lineBuffer = "";
 
     public TestOutputHelperAdapter(ITestOutputHelper outputHelper)
     {
@@ -20,6 +19,11 @@ public class TestOutputHelperAdapter : ITextOutput
     public void Write(char c)
     {
         lineBuffer += c;
+    }
+
+    public string GetOutput()
+    {
+        throw new NotImplementedException();
     }
 
     public void WriteLine(string message)
