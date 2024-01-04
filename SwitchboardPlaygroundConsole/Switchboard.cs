@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsole;
+namespace SwitchboardPlaygroundConsole;
 
 public class Switchboard
 {
@@ -239,11 +239,11 @@ public class Switchboard
         {
             yield break;
         }
-        //Since neighbor is now a legal location, we need to find the 5 legal track pieces for that location.
-        //We do this by looking at the 8 possible directions from the neighbor and finding the 5 that are legal.
-        //We then yield return each of those 5 legal directions.
-        //var legalDirections = new List<CellDirection>();
-        for (var offset = 2; offset <= 6; offset++)
+        // Since neighbor is now a legal location, we need to create the 5 legal track pieces for that location.
+        // We then yield return each of those 5 legal pieces.
+        // We priortise the straight piece first, then the 135 degree turn, then the 90 degree turn.
+        var offsetOptions = new[] { 4, 3, 5, 2, 6 };
+        foreach (var offset in offsetOptions)
         {
             var inDirection = cell1.Out.Opposite();
             var outDirection = (CellDirection)(((int)inDirection + offset) % 8);
