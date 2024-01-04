@@ -114,7 +114,14 @@ public class Cell : IEquatable<Cell>
     }
 
     public override string ToString()
-        => $"{nameof(Location)}: {Location}, {nameof(Occupied)}: {Occupied}, {nameof(In)}: {In}, {nameof(Out)}: {Out}, {nameof(Weight)}: {Weight}";
+    {
+        if (!Occupied && In == CellDirection.Unknown && Out == CellDirection.Unknown && Weight == -1)
+        {
+            return $"{nameof(Location)}: {Location}";
+        }
+
+        return $"{nameof(Location)}: {Location}, {nameof(Occupied)}: {Occupied}, {nameof(In)}: {In}, {nameof(Out)}: {Out}, {nameof(Weight)}: {Weight}";
+    }
 
     public void SetOccupied()
     {
