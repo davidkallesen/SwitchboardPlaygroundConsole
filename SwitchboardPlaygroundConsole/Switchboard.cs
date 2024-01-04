@@ -143,7 +143,7 @@ public class Switchboard
         };
     }
 
-    public Cell[] FindPathBFS(Point start, Point target)
+    public Cell[] FindPathBreadthFirstSearch(Point start, Point target)
     {
         var queue = new Queue<Cell>();
         var visited = new HashSet<Cell>();
