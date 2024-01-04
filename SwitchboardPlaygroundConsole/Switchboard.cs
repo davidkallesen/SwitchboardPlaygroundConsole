@@ -1,4 +1,4 @@
-namespace SwitchboardPlaygroundConsole;
+﻿namespace SwitchboardPlaygroundConsole;
 
 public class Switchboard
 {
@@ -214,18 +214,9 @@ public class Switchboard
             Console.WriteLine($"cell = {cell}");
             result.Add(cell);
         }
-        // while (currentCell != startCell)
-        // {
-        //     result.Add(currentCell);
-        //     currentCell = path[currentCell];
-        // }
-
-        // result.Reverse();
-        // Console.WriteLine(result);
+        result.Add(finalCell);
         return result.ToArray();
     }
-
-
 
     public IEnumerable<Cell> GetCellContinuations(Cell cell1)
     {

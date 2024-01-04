@@ -19,8 +19,8 @@
 // The switchboard is a 2D array of Cell objects. The hmax and vmax are the horizontal and vertical size of the grid.
 using SwitchboardPlaygroundConsole;
 
-var hmax = 3;
-var vmax = 3;
+var hmax = 4;
+var vmax = 4;
 
 // These are the start and end cells. I assume that the two cells are already existing in the grid,
 // and have respectively their Out and In pointing "inside" the grid". 
