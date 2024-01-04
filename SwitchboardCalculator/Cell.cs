@@ -28,6 +28,21 @@ public class Cell : IEquatable<Cell>
 
     public bool Occupied { get; set; }
 
+    private char decorator = ' ';
+
+    public char Decorator
+    {
+        get => decorator;
+        set
+        {
+            if (decorator != value)
+            {
+                decorator = value;
+                UpdateAsciiGrid();
+            }
+        }
+    }
+
     public bool IsEmpty => !Occupied && In == CellDirection.Unknown && Out == CellDirection.Unknown;
 
     public CellDirection In { get; private set; } = CellDirection.Unknown;
@@ -50,7 +65,8 @@ public class Cell : IEquatable<Cell>
     private void UpdateAsciiGrid()
     {
         var weight = CellWeight();
-        displayAsciiGrid[1, 1] = (weight >= 0) ? (char)(weight + '0') : '*';
+        var weightChar = (weight >= 0) ? (char)(weight + '0') : '*';
+        displayAsciiGrid[1, 1] = Decorator == ' ' ? weightChar : Decorator;
 
         //connection points are numbered from 0 to 7, starting at the top left corner and going clockwise.
         //if a connection is in use, we need to draw the appropriate line by taking the character from the template

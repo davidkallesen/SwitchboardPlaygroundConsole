@@ -91,7 +91,7 @@ public static class TestCasesResourcesParser
                             var cellDirectionOut = CellDirectionHelper.GetCellDirectionByNumber(c);
                             var cellDirectionIn = cellDirectionOut.Opposite();
                             startPoint = new Point(x, y);
-                            sw.SetInOut(startPoint, cellDirectionIn, cellDirectionOut);
+                            sw.SetStartCell(startPoint, cellDirectionIn, cellDirectionOut);
                             break;
                         }
                     case >= 'A' and <= 'H':
@@ -99,7 +99,7 @@ public static class TestCasesResourcesParser
                             var cellDirectionIn = CellDirectionHelper.GetCellDirectionByLetter(c);
                             var cellDirectionOut = cellDirectionIn.Opposite();
                             targetPoint = new Point(x, y);
-                            sw.SetInOut(targetPoint, cellDirectionIn, cellDirectionOut);
+                            sw.SetTargetCell(targetPoint, cellDirectionIn, cellDirectionOut);
                             break;
                         }
                 }

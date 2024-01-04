@@ -29,8 +29,9 @@ var targetCell = new Point(3, 0 );
 
 var switchboard = new Switchboard(hmax, vmax);
 
-switchboard.SetInOut(new Point(0, 2), CellDirection.N, CellDirection.S);
-switchboard.SetInOut(new Point(3, 0), CellDirection.W, CellDirection.NE);
+
+switchboard.SetStartCell(startCell, CellDirection.N, CellDirection.S);
+switchboard.SetTargetCell(targetCell, CellDirection.W, CellDirection.NE);
 
 switchboard.SetOccupied(new Point(1, 0));
 switchboard.SetOccupied(new Point(2, 1));

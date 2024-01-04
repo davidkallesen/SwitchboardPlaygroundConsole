@@ -1,4 +1,4 @@
-﻿namespace SwitchboardCalculator;
+namespace SwitchboardCalculator;
 
 public class Switchboard
 {
@@ -29,6 +29,20 @@ public class Switchboard
     public void SetOccupied(Point point) => GetCell(point).SetOccupied();
 
     public void SetInOut(Point point, CellDirection @in, CellDirection @out) => GetCell(point).SetInOut(@in, @out);
+
+    public void SetStartCell(Point point, CellDirection @in, CellDirection @out) 
+    {
+        var cell = GetCell(point);
+        cell.SetInOut(@in, @out);
+        cell.Decorator = 'S';
+    } 
+
+    public void SetTargetCell(Point point, CellDirection @in, CellDirection @out) 
+    {
+        var cell = GetCell(point);
+        cell.SetInOut(@in, @out);
+        cell.Decorator = 'T';
+    } 
 
     public Cell? GetCellNW(Point point)
     {
