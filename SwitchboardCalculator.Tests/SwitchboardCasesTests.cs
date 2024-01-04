@@ -4,11 +4,14 @@
 public class SwitchboardCasesTests
 {
     private readonly ITextOutput output;
-    private readonly VerifySettings verifySettings = new();
+    private readonly VerifySettings verifySettings;
 
     public SwitchboardCasesTests(ITestOutputHelper output)
     {
         this.output = new StringHelperAdapter(output);
+        
+        verifySettings = new VerifySettings();
+        verifySettings.UseDirectory("TestCasesVerify");
     }
 
     [Theory]
@@ -16,7 +19,6 @@ public class SwitchboardCasesTests
     public Task TestCaseParser(string caseName)
     {
         // Arrange
-        verifySettings.UseDirectory("TestCasesVerify");
         verifySettings.UseFileName(caseName);
         var data = TestCasesResourcesParser.GetSwitchboardDataByCaseName(caseName);
 
@@ -31,7 +33,6 @@ public class SwitchboardCasesTests
     public Task FindPathBreadthFirstSearch(string caseName)
     {
         // Arrange
-        verifySettings.UseDirectory("TestCasesVerify");
         verifySettings.UseFileName(caseName);
         var data = TestCasesResourcesParser.GetSwitchboardDataByCaseName(caseName);
 
