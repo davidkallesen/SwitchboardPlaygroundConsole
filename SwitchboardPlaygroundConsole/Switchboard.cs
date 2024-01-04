@@ -1,4 +1,4 @@
-namespace SwitchboardPlaygroundConsole;
+﻿namespace SwitchboardPlaygroundConsole;
 
 public class Switchboard
 {
@@ -157,6 +157,75 @@ public class Switchboard
             _ => false
         };
     }
+
+    public Cell[] findPathBFS(Point start, Point target)
+    {
+        var queue = new Queue<Cell>();
+        var visited = new HashSet<Cell>();
+        var path = new Dictionary<Cell, List<Cell>>();
+        var startCell = GetCell(start);
+        var targetCell = GetCell(target);
+        queue.Enqueue(startCell);
+        visited.Add(startCell);
+        path[startCell] = new List<Cell>(); // Initialize the path for the start cell
+        Cell? finalCell = null;
+        while (queue.Count > 0)
+        {
+            var current = queue.Dequeue();
+            Console.WriteLine($"current = {current}");
+            if (IsConnected(current, targetCell))
+            {
+                Console.WriteLine($"found target = {targetCell}");
+                finalCell = current;
+                break;
+            }
+
+            var nextCells = GetCellContinuations(current);
+            foreach (var neighbor in nextCells)
+            {
+                Console.WriteLine($"neighbor = {neighbor}");
+                if (visited.Contains(neighbor))
+                {
+                    Console.WriteLine($"already visited = {neighbor} - skipping");
+                    continue;
+                }
+
+                queue.Enqueue(neighbor);
+                visited.Add(neighbor);
+                // Update the path for the neighbor cell by appending the current cell to the existing path
+                path[neighbor] = new List<Cell>(path[current]) { current };
+            }
+            Console.WriteLine($"queue.Count = {queue.Count}");
+            //print out path
+            // foreach (var cell in path)
+            // {
+            //     Console.WriteLine($"path = {cell}");
+            // }
+        }
+        Console.WriteLine("done?");
+        Console.WriteLine($"finalCell = {finalCell}");
+        var result = new List<Cell>();
+        var currentCell = GetCell(target);
+        Console.WriteLine($"currentCell = {currentCell}");
+        var winnerpath = path[finalCell];
+        Console.WriteLine($"winnerpath = {winnerpath}");
+        foreach (var cell in winnerpath)
+        {
+            Console.WriteLine($"cell = {cell}");
+            result.Add(cell);
+        }
+        // while (currentCell != startCell)
+        // {
+        //     result.Add(currentCell);
+        //     currentCell = path[currentCell];
+        // }
+
+        // result.Reverse();
+        // Console.WriteLine(result);
+        return result.ToArray();
+    }
+
+
 
     public IEnumerable<Cell> GetCellContinuations(Cell cell1)
     {

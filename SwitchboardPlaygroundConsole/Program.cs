@@ -19,25 +19,34 @@
 // The switchboard is a 2D array of Cell objects. The hmax and vmax are the horizontal and vertical size of the grid.
 using SwitchboardPlaygroundConsole;
 
-var hmax = 6;
-var vmax = 5;
+var hmax = 3;
+var vmax = 3;
 
 // These are the start and end cells. I assume that the two cells are already existing in the grid,
 // and have respectively their Out and In pointing "inside" the grid". 
 // We want to find the lowest weighted connection from the Out of the start cell to the In of the end cell.
-var startcell = new Point(4, 0 );
-var targetcell = new Point(0, 3 );
+var startcell = new Point(0, 2 );
+var targetcell = new Point(2, 0 );
 
 
 var switchboard = new Switchboard(hmax, vmax);
 
-switchboard.SetOccupied(new Point(1, 0));
-switchboard.SetInOut(new Point( 1, 1), CellDirection.NW, CellDirection.S);
-switchboard.SetInOut(new Point(0, 3), CellDirection.S, CellDirection.E);
-switchboard.SetInOut(new Point(1, 3), CellDirection.W, CellDirection.N);
-switchboard.SetInOut(new Point(1, 2), CellDirection.S, CellDirection.N);
-switchboard.SetInOut(new Point(0, 0), CellDirection.SE, CellDirection.N);
-switchboard.SetInOut(new Point(3, 3), CellDirection.SE, CellDirection.SE);
-switchboard.SetInOut(new Point(4, 3), CellDirection.SE, CellDirection.S);
+//switchboard.SetOccupied(new Point(1, 0));
+//switchboard.SetInOut(new Point( 1, 1), CellDirection.NW, CellDirection.S);
+switchboard.SetInOut(new Point(0, 2), CellDirection.SW, CellDirection.N);
+switchboard.SetInOut(new Point(2, 0), CellDirection.W, CellDirection.NE);
+// switchboard.SetInOut(new Point(1, 2), CellDirection.S, CellDirection.N);
+// switchboard.SetInOut(new Point(0, 0), CellDirection.SE, CellDirection.N);
+// switchboard.SetInOut(new Point(3, 3), CellDirection.SE, CellDirection.SE);
+// switchboard.SetInOut(new Point(4, 3), CellDirection.SE, CellDirection.S);
 
+ConsoleHelper.Render(switchboard);
+
+var path = switchboard.findPathBFS(startcell, targetcell);
+
+//add all cells in the path to existing switchboard and render it again
+foreach (var cell in path)
+{
+    switchboard.GetCell(cell.Location).SetInOut(cell.In, cell.Out);
+}
 ConsoleHelper.Render(switchboard);
