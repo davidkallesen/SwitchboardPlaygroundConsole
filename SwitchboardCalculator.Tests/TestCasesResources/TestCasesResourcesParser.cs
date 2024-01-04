@@ -46,7 +46,7 @@ public static class TestCasesResourcesParser
 
         foreach (var line in lines)
         {
-            if (line.Length <= 1)
+            if (line.Length < 1)
             {
                 continue;
             }
@@ -71,7 +71,7 @@ public static class TestCasesResourcesParser
         var y = 0;
         foreach (var line in lines)
         {
-            if (line.Length <= 1)
+            if (line.Length < 1)
             {
                 continue;
             }
