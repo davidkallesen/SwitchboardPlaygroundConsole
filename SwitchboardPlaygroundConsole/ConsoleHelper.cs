@@ -43,11 +43,9 @@ public static class ConsoleHelper
 
         Console.ForegroundColor = ConsoleColor.DarkGray;
     }
-     public static void Render(Switchboard switchboard) 
-        {
-            var consoleOutput = new ConsoleTextOutput();
-            ConsoleHelper.Render(switchboard, consoleOutput);
-
-        } 
-
+    public static void Render(Switchboard switchboard)
+    {
+        var consoleOutput = new ConsoleTextOutput();
+        Render(switchboard, consoleOutput);
+    }
 }

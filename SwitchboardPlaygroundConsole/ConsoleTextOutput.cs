@@ -1,3 +1,5 @@
+namespace SwitchboardPlaygroundConsole; 
+
 public class ConsoleTextOutput : ITextOutput
 {
     public void WriteLine(string message)
