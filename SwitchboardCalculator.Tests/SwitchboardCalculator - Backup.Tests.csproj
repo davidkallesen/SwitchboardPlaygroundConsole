@@ -37,19 +37,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\Case_already_connected.txt" />
-    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\Case_circular_path.txt" />
-    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\Case_no_possible_path.txt" />
-    <None Remove="TestCasesResources\TestCaseParser\Case1.txt" />
-    <None Remove="TestCasesResources\TestCaseParser\Case2.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\Case_already_connected.txt" />
-    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\Case_circular_path.txt" />
-    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\Case_no_possible_path.txt" />
-    <EmbeddedResource Include="TestCasesResources\TestCaseParser\Case1.txt" />
-    <EmbeddedResource Include="TestCasesResources\TestCaseParser\Case2.txt" />
+    <Folder Include="TestCasesResources\NewFolder\" />
+    <Folder Include="TestCasesResources\TestCaseParser\" />
   </ItemGroup>
 
 </Project>

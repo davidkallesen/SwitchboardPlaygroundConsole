@@ -2,7 +2,7 @@
 
 public static class TestCasesResourcesParser
 {
-    private static string ResourcePath = "SwitchboardCalculator.Tests.TestCasesResources.";
+    private static readonly string ResourceRootPath = "SwitchboardCalculator.Tests.TestCasesResources.";
 
     public static string[] GetCaseNames()
     {
@@ -12,9 +12,9 @@ public static class TestCasesResourcesParser
 
         return resourceNames
             .Where(x => x.EndsWith(".txt", StringComparison.Ordinal) &&
-                        x.StartsWith(ResourcePath, StringComparison.Ordinal))
+                        x.StartsWith(ResourceRootPath, StringComparison.Ordinal))
             .Select(x => x
-                .Replace(ResourcePath, string.Empty, StringComparison.Ordinal)
+                .Replace(ResourceRootPath, string.Empty, StringComparison.Ordinal)
                 .Replace(".txt", string.Empty, StringComparison.Ordinal))
             .ToArray();
     }
@@ -24,7 +24,7 @@ public static class TestCasesResourcesParser
     {
         var resourceStream = Assembly
             .GetAssembly(typeof(TestCasesResourcesParser))!
-            .GetManifestResourceStream($"{ResourcePath}{caseName}.txt");
+            .GetManifestResourceStream($"{ResourceRootPath}{caseName}.txt");
 
         if (resourceStream is null)
         {

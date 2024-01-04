@@ -16,7 +16,8 @@ public class SwitchboardCasesTests
     public Task TestCaseParser(string caseName)
     {
         // Arrange
-        verifySettings.UseFileName($"TestCaseParser_{caseName}");
+        verifySettings.UseDirectory("TestCasesVerify");
+        verifySettings.UseFileName(caseName);
         var data = TestCasesResourcesParser.GetSwitchboardDataByCaseName(caseName);
 
         ConsoleHelper.Render(data.Switchboard, output);
@@ -30,7 +31,8 @@ public class SwitchboardCasesTests
     public Task FindPathBreadthFirstSearch(string caseName)
     {
         // Arrange
-        verifySettings.UseFileName($"FindPathBreadthFirstSearch_{caseName}");
+        verifySettings.UseDirectory("TestCasesVerify");
+        verifySettings.UseFileName(caseName);
         var data = TestCasesResourcesParser.GetSwitchboardDataByCaseName(caseName);
 
         var pathCells = data.Switchboard.FindPathBreadthFirstSearch(data.Start, data.Target);

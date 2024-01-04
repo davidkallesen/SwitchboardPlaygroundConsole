@@ -8,7 +8,7 @@ internal static class TestMemberDataForCases
         {
             var data = new TheoryData<string>();
             var caseNames = TestCasesResourcesParser.GetCaseNames();
-            foreach (var caseName in caseNames)
+            foreach (var caseName in caseNames.Where(x => x.StartsWith(nameof(TestCaseParser), StringComparison.Ordinal)))
             {
                 data.Add(caseName);
             }
@@ -23,7 +23,7 @@ internal static class TestMemberDataForCases
         {
             var data = new TheoryData<string>();
             var caseNames = TestCasesResourcesParser.GetCaseNames();
-            foreach (var caseName in caseNames)
+            foreach (var caseName in caseNames.Where(x => x.StartsWith(nameof(FindPathBreadthFirstSearch), StringComparison.Ordinal)))
             {
                 data.Add(caseName);
             }
