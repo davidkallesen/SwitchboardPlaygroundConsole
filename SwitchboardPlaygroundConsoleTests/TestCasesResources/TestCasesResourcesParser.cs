@@ -9,7 +9,7 @@ public static class TestCasesResourcesParser
             .GetManifestResourceNames();
 
         return resourceNames
-            .Where(x => x.EndsWith(".txt", StringComparison.Ordinal) && 
+            .Where(x => x.EndsWith(".txt", StringComparison.Ordinal) &&
                         x.StartsWith("SwitchboardPlaygroundConsoleTests.TestCasesResources.", StringComparison.Ordinal))
             .Select(x => x
                 .Replace("SwitchboardPlaygroundConsoleTests.TestCasesResources.", string.Empty, StringComparison.Ordinal)
@@ -17,7 +17,7 @@ public static class TestCasesResourcesParser
             .ToArray();
     }
 
-    public static Switchboard GetSwitchboardByCaseName(
+    public static (Switchboard Switchboard, Point Start, Point Target) GetSwitchboardDataByCaseName(
         string caseName)
     {
         var resourceStream = Assembly
@@ -31,9 +31,9 @@ public static class TestCasesResourcesParser
 
         using var reader = new StreamReader(resourceStream);
         var lines = reader.ReadToEnd().ToLines();
+
         var switchboard = CreateEmptySwitchboardFromLines(lines);
-        PopulateSwitchboardFromLines(lines, switchboard);
-        return switchboard;
+        return PopulateSwitchboardFromLines(lines, switchboard);
     }
 
     private static Switchboard CreateEmptySwitchboardFromLines(
@@ -61,9 +61,11 @@ public static class TestCasesResourcesParser
         return sw;
     }
 
-    private static void PopulateSwitchboardFromLines(
+    private static (Switchboard Switchboard, Point Start, Point Target) PopulateSwitchboardFromLines(
         IEnumerable<string> lines, Switchboard sw)
     {
+        var startPoint = Point.Empty;
+        var targetPoint = Point.Empty;
         var y = 0;
         foreach (var line in lines)
         {
@@ -86,14 +88,16 @@ public static class TestCasesResourcesParser
                         {
                             var cellDirectionOut = CellDirectionHelper.GetCellDirectionByNumber(c);
                             var cellDirectionIn = cellDirectionOut.Opposite();
-                            sw.SetInOut(new Point(x, y), cellDirectionIn, cellDirectionOut);
+                            startPoint = new Point(x, y);
+                            sw.SetInOut(startPoint, cellDirectionIn, cellDirectionOut);
                             break;
                         }
                     case >= 'A' and <= 'H':
                         {
-                            var cellDirectionOut = CellDirectionHelper.GetCellDirectionByLetter(c);
-                            var cellDirectionIn = cellDirectionOut.Opposite();
-                            sw.SetInOut(new Point(x, y), cellDirectionIn, cellDirectionOut);
+                            var cellDirectionIn = CellDirectionHelper.GetCellDirectionByLetter(c);
+                            var cellDirectionOut = cellDirectionIn.Opposite();
+                            targetPoint = new Point(x, y);
+                            sw.SetInOut(targetPoint, cellDirectionIn, cellDirectionOut);
                             break;
                         }
                 }
@@ -101,5 +105,7 @@ public static class TestCasesResourcesParser
 
             y++;
         }
+
+        return (sw, startPoint, targetPoint);
     }
 }

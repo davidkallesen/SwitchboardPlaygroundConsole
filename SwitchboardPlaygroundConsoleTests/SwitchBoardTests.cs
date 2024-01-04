@@ -85,6 +85,7 @@ public class SwitchboardTests
     [InlineData(1, 1, CellDirection.NE, CellDirection.S, 1, 2, CellDirection.N, CellDirection.SE)]
     [InlineData(1, 1, CellDirection.NE, CellDirection.SW, 0, 2, CellDirection.NE, CellDirection.SW)]
     [InlineData(1, 1, CellDirection.NE, CellDirection.W, 0, 1, CellDirection.E, CellDirection.SW)]
+    [InlineData(1, 1, CellDirection.W, CellDirection.E, 2, 1, CellDirection.W, CellDirection.W)]
     public void IsConnected_ShouldBeConnected (
         int p1X, int p1Y, CellDirection p1In, CellDirection p1Out, 
         int p2X, int p2Y, CellDirection p2In, CellDirection p2Out)
