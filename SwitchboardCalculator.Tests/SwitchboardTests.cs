@@ -12,7 +12,7 @@ public class SwitchboardTests
     [Fact]
     public void IsConnected_ReturnsFalse_WhenEitherCellIsOccupiedOrEmpty()
     {
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetOccupied(new Point(2, 2));
         var cell1 = switchboard.GetCell(new Point(2, 2));
         var cell2 = switchboard.GetCell(new Point(1, 1));
@@ -25,7 +25,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(2, 2);
         var p2 = new Point(1, 1);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, CellDirection.SE, CellDirection.NW);
         switchboard.SetInOut(p2, CellDirection.SE, CellDirection.NW);
         var cell1 = switchboard.GetCell(p1);
@@ -39,7 +39,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(2, 2);
         var p2 = new Point(2, 1);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, CellDirection.SE, CellDirection.N);
         switchboard.SetInOut(p2, CellDirection.S, CellDirection.NE);
         var cell1 = switchboard.GetCell(p1);
@@ -53,7 +53,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(2, 2);
         var p2 = new Point(1, 1);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, CellDirection.SE, CellDirection.NW);
         switchboard.SetInOut(p2, CellDirection.NW, CellDirection.S);
         var cell1 = switchboard.GetCell(p1);
@@ -67,7 +67,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(2, 2);
         var p2 = new Point(0, 0);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, CellDirection.SE, CellDirection.NW);
         switchboard.SetInOut(p2, CellDirection.NW, CellDirection.SE);
         var cell1 = switchboard.GetCell(p1);
@@ -92,7 +92,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(p1X, p1Y);
         var p2 = new Point(p2X, p2Y);
-        var switchboard = new Switchboard(3, 3);
+        var switchboard = new Switchboard(NullLogger.Instance, 3, 3);
         switchboard.SetInOut(p1, p1In, p1Out);
         switchboard.SetInOut(p2, p2In, p2Out);
         var cell1 = switchboard.GetCell(p1);
@@ -116,7 +116,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(p1X, p1Y);
         var p2 = new Point(p2X, p2Y);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, p1In, p1Out);
         switchboard.SetInOut(p2, p2In, p2Out);
         var cell1 = switchboard.GetCell(p1);
@@ -141,7 +141,7 @@ public class SwitchboardTests
     {
         var p1 = new Point(p1X, p1Y);
         var p2 = new Point(p2X, p2Y);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, p1In, p1Out);
         switchboard.SetInOut(p2, p2In, p2Out);
         var cell1 = switchboard.GetCell(p1);
@@ -154,7 +154,7 @@ public class SwitchboardTests
     public void GetCellContinuations_ShouldReturnEmptyList_WhenCellIsOccupied()
     {
         var p1 = new Point(2, 2);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetOccupied(p1);
         var cell = switchboard.GetCell(p1);
         ConsoleHelper.Render(switchboard, output);
@@ -165,7 +165,7 @@ public class SwitchboardTests
     public void GetCellContinuations_ShouldReturnEmptyList_WhenCellIsEmpty()
     {
         var p1 = new Point(2, 2);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         var cell = switchboard.GetCell(p1);
         ConsoleHelper.Render(switchboard, output);
         Assert.Empty(switchboard.GetCellContinuations(cell));
@@ -175,7 +175,7 @@ public class SwitchboardTests
     public void GetCellContinuations_ShouldReturnEmptyList_WhenCellHasNoLegalNeighbors()
     {
         var p1 = new Point(0, 0);
-        var switchboard = new Switchboard(2, 2);
+        var switchboard = new Switchboard(NullLogger.Instance, 2, 2);
         switchboard.SetInOut(p1, CellDirection.SE, CellDirection.N);
         var cell = switchboard.GetCell(p1);
         ConsoleHelper.Render(switchboard, output);
@@ -186,7 +186,7 @@ public class SwitchboardTests
     public void GetCellContinuations_ShouldReturnFivePossibleContinuations_WhenCellIsConnectedN()
     {
         var p1 = new Point(2, 2);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, CellDirection.SE, CellDirection.N);
         var cell = switchboard.GetCell(p1);
         ConsoleHelper.Render(switchboard, output);
@@ -194,11 +194,9 @@ public class SwitchboardTests
         
         var myCell = (Cell)cell; // Casting cell? to Cell
         var result = switchboard.GetCellContinuations(myCell);
-        Console.WriteLine(result);
         Assert.Equal(5, switchboard.GetCellContinuations(myCell).Count());
         foreach (var item in result)
         {
-            Console.WriteLine(item);
             Assert.Equal(new Point(2,1), item.Location);
             Assert.Equal(CellDirection.S, item.In);
         }
@@ -208,7 +206,7 @@ public class SwitchboardTests
     public void GetCellContinuations_ShouldReturnFivePossibleContinuations_WhenCellIsConnectedSE()
     {
         var p1 = new Point(2, 2);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, CellDirection.N, CellDirection.SE);
         var cell = switchboard.GetCell(p1);
         ConsoleHelper.Render(switchboard, output);
@@ -216,11 +214,9 @@ public class SwitchboardTests
         
         var myCell = (Cell)cell; // Casting cell? to Cell
         var result = switchboard.GetCellContinuations(myCell);
-        Console.WriteLine(result);
         Assert.Equal(5, switchboard.GetCellContinuations(myCell).Count());
         foreach (var item in result)
         {
-            Console.WriteLine(item);
             Assert.Equal(new Point(3,3), item.Location);
             Assert.Equal(CellDirection.NW, item.In);
         }
@@ -234,7 +230,7 @@ public class SwitchboardTests
         int endX, int endY, CellDirection endIn)
     {
         var p1 = new Point(startX, StartY);
-        var switchboard = new Switchboard(5, 5);
+        var switchboard = new Switchboard(NullLogger.Instance, 5, 5);
         switchboard.SetInOut(p1, startIn, startOut);
         var cell = switchboard.GetCell(p1);
         ConsoleHelper.Render(switchboard, output);
@@ -242,11 +238,9 @@ public class SwitchboardTests
 
         var myCell = (Cell)cell; // Casting cell? to Cell
         var result = switchboard.GetCellContinuations(myCell);
-        Console.WriteLine(result);
         Assert.Equal(5, switchboard.GetCellContinuations(myCell).Count());
         foreach (var item in result)
         {
-            Console.WriteLine(item);
             Assert.Equal(new Point(endX, endY), item.Location);
             Assert.Equal(endIn, item.In);
         }

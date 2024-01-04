@@ -2,12 +2,18 @@ namespace SwitchboardCalculator;
 
 public class Switchboard
 {
+    private readonly ILogger logger;
     private readonly Cell[,] data;
 
-    public Switchboard(int horizontal, int vertical)
+    public Switchboard(
+        ILogger logger, 
+        int horizontal, 
+        int vertical)
     {
+        this.logger = logger;
         MaxHorizontal = horizontal;
         MaxVertical = vertical;
+
         data = new Cell[horizontal, vertical];
         for (var r = 0; r < vertical; r++)
         {
@@ -171,11 +177,11 @@ public class Switchboard
         while (queue.Count > 0)
         {
             var current = queue.Dequeue();
-            Console.WriteLine($"current = {current}");
+            logger.LogTrace($"current = {current}");
 
             if (IsConnected(current, targetCell))
             {
-                Console.WriteLine($"found target = {targetCell}");
+                logger.LogTrace($"found target = {targetCell}");
                 finalCell = current;
                 break;
             }
@@ -183,10 +189,10 @@ public class Switchboard
             var nextCells = GetCellContinuations(current);
             foreach (var neighbor in nextCells)
             {
-                //Console.WriteLine($"neighbor = {neighbor}");
+                logger.LogTrace($"neighbor = {neighbor}");
                 if (visited.Contains(neighbor))
                 {
-                    Console.WriteLine($"already visited = {neighbor} - skipping");
+                    logger.LogTrace($"already visited = {neighbor} - skipping");
                     continue;
                 }
 
@@ -199,20 +205,20 @@ public class Switchboard
         }
 
         var currentCell = GetCell(target);
-        Console.WriteLine($"finalCell = {finalCell}");
-        Console.WriteLine($"currentCell = {currentCell}");
+        logger.LogTrace($"finalCell = {finalCell}");
+        logger.LogTrace($"currentCell = {currentCell}");
 
         var result = new List<Cell>();
         if (finalCell is null)
         {
-            Console.WriteLine("Hmm - no valid path");
+            logger.LogWarning("Hmm - no valid path");
         }
         else
         {
-            Console.WriteLine("WinnerPath:");
+            logger.LogTrace("WinnerPath:");
             foreach (var cell in path[finalCell])
             {
-                Console.WriteLine($"\tcell = {cell}");
+                logger.LogTrace($"\tcell = {cell}");
                 result.Add(cell);
             }
 

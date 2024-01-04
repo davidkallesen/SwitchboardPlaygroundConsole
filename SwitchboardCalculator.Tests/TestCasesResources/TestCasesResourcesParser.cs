@@ -59,7 +59,7 @@ public static class TestCasesResourcesParser
             vertical++;
         }
 
-        var sw = new Switchboard(horizontal, vertical);
+        var sw = new Switchboard(NullLogger.Instance, horizontal, vertical);
         return sw;
     }
 

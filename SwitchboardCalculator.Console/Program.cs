@@ -1,3 +1,24 @@
+var servicesCollection = new ServiceCollection();
+servicesCollection.AddLogging(loggerBuilder =>
+{
+    loggerBuilder.AddConsole(options =>
+    {
+        options.FormatterName = "Simple2";
+    });
+    loggerBuilder.AddDebug();
+    loggerBuilder.SetMinimumLevel(LogLevel.Trace);
+
+    // Define a custom formatter
+    loggerBuilder.AddConsoleFormatter<Simple2ConsoleFormatter, SimpleConsoleFormatterOptions>();
+});
+
+var serviceProvider = servicesCollection.BuildServiceProvider();
+var logger = serviceProvider.GetService<ILogger<Program>>()!;
+
+//using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+//ILogger logger = factory.CreateLogger<Program>();
+//logger.LogInformation("Hello World! Logging is {Description}.", "fun");
+
 // Train track Switchboard layout program
 // The purpose of this app is to do auto-layout of train tracks in a n x m grid of cells. 
 // The program should be able to layout the tracks in a way that finds the shortest (weighted) path between a start point
@@ -23,11 +44,11 @@ var vmax = 4;
 // These are the start and end cells. I assume that the two cells are already existing in the grid,
 // and have respectively their Out and In pointing "inside" the grid". 
 // We want to find the lowest weighted connection from the Out of the start cell to the In of the end cell.
-var startCell = new Point(0, 2 );
-var targetCell = new Point(3, 0 );
+var startCell = new Point(0, 2);
+var targetCell = new Point(3, 0);
 
 
-var switchboard = new Switchboard(hmax, vmax);
+var switchboard = new Switchboard(logger, hmax, vmax);
 
 
 switchboard.SetStartCell(startCell, CellDirection.N, CellDirection.S);
