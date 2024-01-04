@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchboardCalculator.Conso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SwitchboardCalculator.Tests", "SwitchboardCalculator.Tests\SwitchboardCalculator.Tests.csproj", "{80238765-CE74-4CE1-B9D5-5EFD2AA32F91}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwitchboardCalculator.Benchmark", "SwitchboardCalculator.Benchmark\SwitchboardCalculator.Benchmark.csproj", "{DE34F83F-0AB7-4262-98AD-016D09B37416}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{80238765-CE74-4CE1-B9D5-5EFD2AA32F91}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80238765-CE74-4CE1-B9D5-5EFD2AA32F91}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80238765-CE74-4CE1-B9D5-5EFD2AA32F91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE34F83F-0AB7-4262-98AD-016D09B37416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE34F83F-0AB7-4262-98AD-016D09B37416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE34F83F-0AB7-4262-98AD-016D09B37416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE34F83F-0AB7-4262-98AD-016D09B37416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
