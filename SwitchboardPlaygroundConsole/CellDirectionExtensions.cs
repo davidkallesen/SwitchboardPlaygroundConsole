@@ -1,4 +1,4 @@
-using SwitchboardPlaygroundConsole;
+namespace SwitchboardPlaygroundConsole;
 
 public static class CellDirectionExtensions
 {
