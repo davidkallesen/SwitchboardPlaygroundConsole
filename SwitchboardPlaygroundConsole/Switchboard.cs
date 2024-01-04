@@ -123,7 +123,7 @@ public class Switchboard
             return false;
         }
 
-        var target = getCellNeighbor(cell1.Location, cell1.Out);
+        var target = GetCellNeighbor(cell1.Location, cell1.Out);
         if (target is null)
         {
             return false;
@@ -144,6 +144,7 @@ public class Switchboard
     }
 
     public Cell[] findPathBFS(Point start, Point target)
+    public Cell[] FindPathBFS(Point start, Point target)
     {
         var queue = new Queue<Cell>();
         var visited = new HashSet<Cell>();
@@ -210,7 +211,7 @@ public class Switchboard
             yield break;
         }
 
-        var target = getCellNeighbor(cell1.Location, cell1.Out);
+        var target = GetCellNeighbor(cell1.Location, cell1.Out);
         if (target is null)
         {
             yield break;

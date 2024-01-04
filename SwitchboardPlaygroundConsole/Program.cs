@@ -42,7 +42,7 @@ switchboard.SetInOut(new Point(2, 0), CellDirection.W, CellDirection.NE);
 
 ConsoleHelper.Render(switchboard);
 
-var path = switchboard.findPathBFS(startcell, targetcell);
+var path = switchboard.FindPathBFS(startcell, targetcell);
 
 //add all cells in the path to existing switchboard and render it again
 foreach (var cell in path)
