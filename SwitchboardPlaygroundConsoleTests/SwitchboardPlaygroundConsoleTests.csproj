@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <None Remove="TestCasesResources\Case1.txt" />
+    <None Remove="TestCasesResources\Case2.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -33,6 +34,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="TestCasesResources\Case2.txt" />
     <EmbeddedResource Include="TestCasesResources\Case1.txt" />
   </ItemGroup>
 
