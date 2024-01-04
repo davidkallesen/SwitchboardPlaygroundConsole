@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsole;
+﻿namespace SwitchboardCalculator;
 
 public class Cell : IEquatable<Cell>
 {
@@ -55,9 +55,9 @@ public class Cell : IEquatable<Cell>
         //connection points are numbered from 0 to 7, starting at the top left corner and going clockwise.
         //if a connection is in use, we need to draw the appropriate line by taking the character from the template
         //and putting it in the right place in the array
-        for (int r = 0; r < 3; r++)
+        for (var r = 0; r < 3; r++)
         {
-            for (int c = 0; c < 3; c++)
+            for (var c = 0; c < 3; c++)
             {
                 if (connectionName[r, c] == In || connectionName[r, c] == Out)
                 {

@@ -17,8 +17,6 @@
 
 // The program will print the grid to the console by calling the SwitchboardHelper.Render(switchboard, hmax, vmax);
 // The switchboard is a 2D array of Cell objects. The hmax and vmax are the horizontal and vertical size of the grid.
-using SwitchboardPlaygroundConsole;
-
 var hmax = 4;
 var vmax = 4;
 
@@ -47,4 +45,5 @@ foreach (var cell in path)
 {
     switchboard.GetCell(cell.Location).SetInOut(cell.In, cell.Out);
 }
+
 ConsoleHelper.Render(switchboard);

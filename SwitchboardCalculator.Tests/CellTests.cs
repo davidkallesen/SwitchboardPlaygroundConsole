@@ -1,3 +1,5 @@
+namespace SwitchboardCalculator.Tests;
+
 public class CellTests
 {
     [Fact]

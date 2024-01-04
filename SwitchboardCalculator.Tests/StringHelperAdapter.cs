@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsoleTests;
+﻿namespace SwitchboardCalculator.Tests;
 
 public class StringHelperAdapter : ITextOutput
 {

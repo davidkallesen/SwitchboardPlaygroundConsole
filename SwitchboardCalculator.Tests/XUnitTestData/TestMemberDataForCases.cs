@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsoleTests.XUnitTestData;
+﻿namespace SwitchboardCalculator.Tests.XUnitTestData;
 
 internal static class TestMemberDataForCases
 {

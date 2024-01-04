@@ -1,4 +1,4 @@
-namespace SwitchboardPlaygroundConsole;
+namespace SwitchboardCalculator;
 
 public static class ConsoleHelper
 {

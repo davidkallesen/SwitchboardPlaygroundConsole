@@ -1,7 +1,9 @@
-﻿namespace SwitchboardPlaygroundConsoleTests.TestCasesResources;
+﻿namespace SwitchboardCalculator.Tests.TestCasesResources;
 
 public static class TestCasesResourcesParser
 {
+    private static string ResourcePath = "SwitchboardCalculator.Tests.TestCasesResources.";
+
     public static string[] GetCaseNames()
     {
         var resourceNames = Assembly
@@ -10,9 +12,9 @@ public static class TestCasesResourcesParser
 
         return resourceNames
             .Where(x => x.EndsWith(".txt", StringComparison.Ordinal) &&
-                        x.StartsWith("SwitchboardPlaygroundConsoleTests.TestCasesResources.", StringComparison.Ordinal))
+                        x.StartsWith(ResourcePath, StringComparison.Ordinal))
             .Select(x => x
-                .Replace("SwitchboardPlaygroundConsoleTests.TestCasesResources.", string.Empty, StringComparison.Ordinal)
+                .Replace(ResourcePath, string.Empty, StringComparison.Ordinal)
                 .Replace(".txt", string.Empty, StringComparison.Ordinal))
             .ToArray();
     }
@@ -22,7 +24,7 @@ public static class TestCasesResourcesParser
     {
         var resourceStream = Assembly
             .GetAssembly(typeof(TestCasesResourcesParser))!
-            .GetManifestResourceStream($"SwitchboardPlaygroundConsoleTests.TestCasesResources.{caseName}.txt");
+            .GetManifestResourceStream($"{ResourcePath}{caseName}.txt");
 
         if (resourceStream is null)
         {

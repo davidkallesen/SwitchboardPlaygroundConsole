@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsoleTests;
+﻿namespace SwitchboardCalculator.Tests;
 
 [UsesVerify]
 public class SwitchboardCasesTests
