@@ -25,26 +25,24 @@ var vmax = 4;
 // These are the start and end cells. I assume that the two cells are already existing in the grid,
 // and have respectively their Out and In pointing "inside" the grid". 
 // We want to find the lowest weighted connection from the Out of the start cell to the In of the end cell.
-var startcell = new Point(0, 2 );
-var targetcell = new Point(2, 0 );
+var startCell = new Point(0, 2 );
+var targetCell = new Point(3, 0 );
 
 
 var switchboard = new Switchboard(hmax, vmax);
 
-//switchboard.SetOccupied(new Point(1, 0));
-//switchboard.SetInOut(new Point( 1, 1), CellDirection.NW, CellDirection.S);
-switchboard.SetInOut(new Point(0, 2), CellDirection.SW, CellDirection.N);
-switchboard.SetInOut(new Point(2, 0), CellDirection.W, CellDirection.NE);
-// switchboard.SetInOut(new Point(1, 2), CellDirection.S, CellDirection.N);
-// switchboard.SetInOut(new Point(0, 0), CellDirection.SE, CellDirection.N);
-// switchboard.SetInOut(new Point(3, 3), CellDirection.SE, CellDirection.SE);
-// switchboard.SetInOut(new Point(4, 3), CellDirection.SE, CellDirection.S);
+switchboard.SetInOut(new Point(0, 2), CellDirection.N, CellDirection.S);
+switchboard.SetInOut(new Point(3, 0), CellDirection.W, CellDirection.NE);
+
+switchboard.SetOccupied(new Point(1, 0));
+switchboard.SetOccupied(new Point(2, 1));
+switchboard.SetOccupied(new Point(2, 2));
 
 ConsoleHelper.Render(switchboard);
 
-var path = switchboard.FindPathBFS(startcell, targetcell);
+var path = switchboard.FindPathBFS(startCell, targetCell);
 
-//add all cells in the path to existing switchboard and render it again
+// Add all cells in the path to existing switchboard and render it again
 foreach (var cell in path)
 {
     switchboard.GetCell(cell.Location).SetInOut(cell.In, cell.Out);
