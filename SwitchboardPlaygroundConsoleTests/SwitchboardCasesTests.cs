@@ -9,12 +9,11 @@ public class SwitchboardCasesTests
         this.output = new TestOutputHelperAdapter(output);
     }
 
-    [Fact]
-    public void Hallo()
+    [Theory]
+    [MemberData(nameof(TestMemberDataForCases.TestCaseData), MemberType = typeof(TestMemberDataForCases))]
+    public void TestCases(string caseName)
     {
-        // TODO: var caseNames = TestCasesResourcesParser.GetCaseNames();
-
-        var switchboard = TestCasesResourcesParser.GetSwitchboardByCaseName("Case1");
+        var switchboard = TestCasesResourcesParser.GetSwitchboardByCaseName(caseName);
         ConsoleHelper.Render(switchboard, output);
         Assert.True(false);
     }
