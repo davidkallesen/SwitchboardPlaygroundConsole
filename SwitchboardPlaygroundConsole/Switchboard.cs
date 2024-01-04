@@ -25,7 +25,7 @@ public class Switchboard
     public Cell GetCell(int x, int y) => data[x, y];
 
     public Cell GetCell(Point point) => GetCell(point.X, point.Y);
-    
+
     public void SetOccupied(Point point) => GetCell(point).SetOccupied();
 
     public void SetInOut(Point point, CellDirection @in, CellDirection @out) => GetCell(point).SetInOut(@in, @out);
@@ -159,6 +159,7 @@ public class Switchboard
         {
             var current = queue.Dequeue();
             Console.WriteLine($"current = {current}");
+
             if (IsConnected(current, targetCell))
             {
                 Console.WriteLine($"found target = {targetCell}");
@@ -178,6 +179,7 @@ public class Switchboard
 
                 queue.Enqueue(neighbor);
                 visited.Add(neighbor);
+
                 // Update the path for the neighbor cell by appending the current cell to the existing path
                 path[neighbor] = new List<Cell>(path[current]) { current };
             }
@@ -191,6 +193,7 @@ public class Switchboard
         Console.WriteLine("done?");
         Console.WriteLine($"finalCell = {finalCell}");
         var result = new List<Cell>();
+
         var currentCell = GetCell(target);
         Console.WriteLine($"currentCell = {currentCell}");
         var winnerpath = path[finalCell];
