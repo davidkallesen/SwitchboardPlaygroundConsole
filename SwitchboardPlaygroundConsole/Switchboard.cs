@@ -183,7 +183,7 @@ public class Switchboard
             var nextCells = GetCellContinuations(current);
             foreach (var neighbor in nextCells)
             {
-                Console.WriteLine($"neighbor = {neighbor}");
+                //Console.WriteLine($"neighbor = {neighbor}");
                 if (visited.Contains(neighbor))
                 {
                     Console.WriteLine($"already visited = {neighbor} - skipping");
@@ -195,7 +195,7 @@ public class Switchboard
                 // Update the path for the neighbor cell by appending the current cell to the existing path
                 path[neighbor] = new List<Cell>(path[current]) { current };
             }
-            Console.WriteLine($"queue.Count = {queue.Count}");
+            //Console.WriteLine($"queue.Count = {queue.Count}");
             //print out path
             // foreach (var cell in path)
             // {
