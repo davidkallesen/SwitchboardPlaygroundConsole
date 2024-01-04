@@ -1,4 +1,3 @@
-using Xunit.Abstractions;
 using Xunit;
 
 public class TestOutputHelperAdapter : ITextOutput

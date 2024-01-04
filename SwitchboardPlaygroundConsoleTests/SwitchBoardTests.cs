@@ -1,13 +1,10 @@
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Engine.ClientProtocol;
-using SwitchboardPlaygroundConsole;
-using Xunit.Abstractions;
+namespace SwitchboardPlaygroundConsoleTests;
 
-
-public class SwitchBoardTests
+public class SwitchboardTests
 {
     private readonly ITextOutput output;
 
-    public SwitchBoardTests(ITestOutputHelper output)
+    public SwitchboardTests(ITestOutputHelper output)
     {
         this.output = new TestOutputHelperAdapter(output);
     }

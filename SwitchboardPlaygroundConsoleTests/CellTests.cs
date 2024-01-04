@@ -1,5 +1,3 @@
-using SwitchboardPlaygroundConsole;
-
 public class CellTests
 {
     [Fact]
