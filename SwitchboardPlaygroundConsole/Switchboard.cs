@@ -33,84 +33,68 @@ public class Switchboard
     public Cell? GetCellNW(Point point)
     {
         var target = new Point(point.X - 1, point.Y - 1);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        return ExistsCellAt(target)
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellN(Point point)
     {
-        var target = new Point(point.X, point.Y - 1);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        var target = point with { Y = point.Y - 1 };
+        return ExistsCellAt(target)
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellNE(Point point)
     {
         var target = new Point(point.X + 1, point.Y - 1);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        return ExistsCellAt(target)
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellW(Point point)
     {
-        var target = new Point(point.X - 1, point.Y);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        var target = point with { X = point.X - 1 };
+        return ExistsCellAt(target)
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellE(Point point)
     {
-        var target = new Point(point.X + 1, point.Y);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        var target = point with { X = point.X + 1 };
+        return ExistsCellAt(target)
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellSW(Point point)
     {
         var target = new Point(point.X - 1, point.Y + 1);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        return ExistsCellAt(target)
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellS(Point point)
     {
-        var target = new Point(point.X, point.Y + 1);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        var target = point with { Y = point.Y + 1 };
+        return ExistsCellAt(target) 
+            ? data[target.X, target.Y]
+            : null;
     }
 
     public Cell? GetCellSE(Point point)
     {
         var target = new Point(point.X + 1, point.Y + 1);
-        if (!ExistsCellAt(target))
-        {
-            return null;
-        }
-        return data[target.X, target.Y];
+        return ExistsCellAt(target) 
+            ? data[target.X, target.Y]
+            : null;
     }
 
-    public Cell? getCellNeighbor(Point point, CellDirection direction)
+    public Cell? GetCellNeighbor(Point point, CellDirection direction)
     {
         return direction switch
         {
@@ -126,11 +110,12 @@ public class Switchboard
         };
     }
 
-    private bool ExistsCellAt(Point point)
-    {
-        return point.X >= 0 && point.X < MaxHorizontal && point.Y >= 0 && point.Y < MaxVertical;
-    }
-    
+    private bool ExistsCellAt(Point point) 
+        => point.X >= 0 && 
+           point.X < MaxHorizontal && 
+           point.Y >= 0 && 
+           point.Y < MaxVertical;
+
     public bool IsConnected(Cell cell1, Cell cell2)
     {
         if (cell1.Occupied || cell1.IsEmpty || cell2.Occupied || cell2.IsEmpty)
