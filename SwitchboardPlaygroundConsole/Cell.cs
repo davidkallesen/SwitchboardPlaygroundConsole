@@ -1,6 +1,6 @@
 ﻿namespace SwitchboardPlaygroundConsole;
 
-public class Cell
+public class Cell : IEquatable<Cell>
 {
     private static readonly char[,] displayAsciiTemplate = new char[3, 3] 
     {
@@ -130,5 +130,18 @@ public class Cell
         In = @in;
         Out = @out;
         UpdateAsciiGrid();
+    }
+
+    public bool Equals(Cell? other)
+    {
+        if (other == null)
+            return false;
+
+        return this.Location == other.Location && this.In == other.In && this.Out == other.Out;
+    }
+
+    public override int GetHashCode()
+    {
+        return Location.GetHashCode() ^ In.GetHashCode() ^ Out.GetHashCode();
     }
 }
