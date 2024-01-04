@@ -9,10 +9,11 @@ public static class TestCasesResourcesParser
             .GetManifestResourceNames();
 
         return resourceNames
-            .Select(
-                x => x
-                    .Replace("SwitchboardPlaygroundConsoleTests.TestCasesResources.", string.Empty)
-                    .Replace(".txt", string.Empty))
+            .Where(x => x.EndsWith(".txt", StringComparison.Ordinal) && 
+                        x.StartsWith("SwitchboardPlaygroundConsoleTests.TestCasesResources.", StringComparison.Ordinal))
+            .Select(x => x
+                .Replace("SwitchboardPlaygroundConsoleTests.TestCasesResources.", string.Empty, StringComparison.Ordinal)
+                .Replace(".txt", string.Empty, StringComparison.Ordinal))
             .ToArray();
     }
 
