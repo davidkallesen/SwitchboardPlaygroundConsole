@@ -10,10 +10,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="TestCasesResources\*.txt" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Atc" Version="2.0.398" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Xunit" Version="2.6.4" />
@@ -37,19 +33,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\Case_already_connected.txt" />
-    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\Case_circular_path.txt" />
-    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\Case_no_possible_path.txt" />
-    <None Remove="TestCasesResources\TestCaseParser\Case1.txt" />
-    <None Remove="TestCasesResources\TestCaseParser\Case2.txt" />
+    <None Remove="TestCasesResources\FindPathBreadthFirstSearch\*.txt" />
+    <None Remove="TestCasesResources\TestCaseParser\*.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\Case_already_connected.txt" />
-    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\Case_circular_path.txt" />
-    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\Case_no_possible_path.txt" />
-    <EmbeddedResource Include="TestCasesResources\TestCaseParser\Case1.txt" />
-    <EmbeddedResource Include="TestCasesResources\TestCaseParser\Case2.txt" />
+    <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\*.txt" />
+    <EmbeddedResource Include="TestCasesResources\TestCaseParser\*.txt" />
   </ItemGroup>
 
 </Project>
