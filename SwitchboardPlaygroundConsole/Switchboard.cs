@@ -227,8 +227,17 @@ public class Switchboard
             var cell2 = new Cell(target.Location);
             cell2.SetInOut(inDirection, outDirection);
 
-            yield return cell2;
+            if (IsUsableContinuation(cell2))
+            {
+                yield return cell2;
+            }
         }
-        yield break;
+    }
+
+    private bool IsUsableContinuation(Cell cell2)
+    {
+        var cellNeighbor = GetCellNeighbor(cell2.Location, cell2.Out);
+        return cellNeighbor is not null &&
+               !cellNeighbor.Occupied;
     }
 }
