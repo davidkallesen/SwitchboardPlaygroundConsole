@@ -183,27 +183,29 @@ public class Switchboard
                 // Update the path for the neighbor cell by appending the current cell to the existing path
                 path[neighbor] = new List<Cell>(path[current]) { current };
             }
-            //Console.WriteLine($"queue.Count = {queue.Count}");
-            //print out path
-            // foreach (var cell in path)
-            // {
-            //     Console.WriteLine($"path = {cell}");
-            // }
         }
-        Console.WriteLine("done?");
-        Console.WriteLine($"finalCell = {finalCell}");
-        var result = new List<Cell>();
 
         var currentCell = GetCell(target);
+        Console.WriteLine($"finalCell = {finalCell}");
         Console.WriteLine($"currentCell = {currentCell}");
-        var winnerpath = path[finalCell];
-        Console.WriteLine($"winnerpath = {winnerpath}");
-        foreach (var cell in winnerpath)
+
+        var result = new List<Cell>();
+        if (finalCell is null)
         {
-            Console.WriteLine($"cell = {cell}");
-            result.Add(cell);
+            Console.WriteLine("Hmm - no valid path");
         }
-        result.Add(finalCell);
+        else
+        {
+            Console.WriteLine("WinnerPath:");
+            foreach (var cell in path[finalCell])
+            {
+                Console.WriteLine($"\tcell = {cell}");
+                result.Add(cell);
+            }
+
+            result.Add(finalCell);
+        }
+
         return result.ToArray();
     }
 
