@@ -12,7 +12,7 @@ public class SwitchboardCasesTests
         
         verifySettings = new VerifySettings();
         verifySettings.UseDirectory("TestCasesVerify");
-        verifySettings.DiffEnabled(false);
+        verifySettings.DisableDiff();
     }
 
     [Theory]
