@@ -143,7 +143,6 @@ public class Switchboard
         };
     }
 
-    public Cell[] findPathBFS(Point start, Point target)
     public Cell[] FindPathBFS(Point start, Point target)
     {
         var queue = new Queue<Cell>();
