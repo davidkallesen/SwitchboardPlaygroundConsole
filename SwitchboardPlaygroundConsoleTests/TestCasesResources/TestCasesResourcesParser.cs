@@ -1,4 +1,4 @@
-﻿namespace SwitchboardPlaygroundConsoleTests;
+﻿namespace SwitchboardPlaygroundConsoleTests.TestCasesResources;
 
 public static class TestCasesResourcesParser
 {
@@ -82,19 +82,19 @@ public static class TestCasesResourcesParser
                         sw.SetOccupied(new Point(x, y));
                         break;
                     case >= '0' and <= '7':
-                    {
-                        var cellDirectionOut = CellDirectionHelper.GetCellDirectionByNumber(c);
-                        var cellDirectionIn = cellDirectionOut.Opposite();
-                        sw.SetInOut(new Point(x, y), cellDirectionIn, cellDirectionOut);
-                        break;
-                    }
+                        {
+                            var cellDirectionOut = CellDirectionHelper.GetCellDirectionByNumber(c);
+                            var cellDirectionIn = cellDirectionOut.Opposite();
+                            sw.SetInOut(new Point(x, y), cellDirectionIn, cellDirectionOut);
+                            break;
+                        }
                     case >= 'A' and <= 'H':
-                    {
-                        var cellDirectionOut = CellDirectionHelper.GetCellDirectionByLetter(c);
-                        var cellDirectionIn = cellDirectionOut.Opposite();
-                        sw.SetInOut(new Point(x, y), cellDirectionIn, cellDirectionOut);
-                        break;
-                    }
+                        {
+                            var cellDirectionOut = CellDirectionHelper.GetCellDirectionByLetter(c);
+                            var cellDirectionIn = cellDirectionOut.Opposite();
+                            sw.SetInOut(new Point(x, y), cellDirectionIn, cellDirectionOut);
+                            break;
+                        }
                 }
             }
 
