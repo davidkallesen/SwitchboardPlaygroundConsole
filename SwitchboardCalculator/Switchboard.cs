@@ -1,4 +1,4 @@
-namespace SwitchboardCalculator;
+﻿namespace SwitchboardCalculator;
 
 public class Switchboard
 {
@@ -229,6 +229,80 @@ public class Switchboard
         return result.ToArray();
     }
 
+    public Cell[] FindPathDijkstra(Point start, Point target)
+    {
+        // Initialize data structures
+        var queue = new PriorityQueue<Cell,int>(); // Create a priority queue to store cells to visit based on their "price" (distance from the start cell)
+        var visited = new HashSet<Cell>(); // Keep track of visited cells
+        //var path = new Dictionary<Cell, List<Cell>>();
+        var pathCost = new Dictionary<Cell, int>(); // Store the shortest distances from the start cell to each cell
+        var previous = new Dictionary<Cell, Cell>(); // Store the previous cell in the shortest path
+
+        var startCell = GetCell(start); // Get the start cell object
+        var targetCell = GetCell(target); // Get the target cell object
+
+        pathCost[startCell] = 0; // Set the distance from the start cell to itself as 0
+        queue.Enqueue(startCell, 0); // Enqueue the start cell with priority 0
+        Cell? finalCell = null;
+        while (queue.Count > 0) // Continue until the queue is empty
+        {
+            var current = queue.Dequeue(); // Dequeue the cell with the highest priority (lowest distance)
+            logger.LogTrace($"current = {current}");
+
+            visited.Add(current); // Mark the current cell as visited
+
+            if (IsConnected(current, targetCell))
+            {
+                logger.LogTrace($"found target = {targetCell}");
+                finalCell = current;
+                previous[targetCell] = current; // Update the previous cell in the shortest path
+                break;
+            }
+
+            var nextCells = GetCellContinuations(current); // Get the neighboring cells of the current cell
+            foreach (var neighbor in nextCells) // Iterate through each neighbor
+            {
+                var weight = neighbor.Weight; // Get the weight of the neighbor cell
+                var cost = pathCost[current] + weight; // Calculate the accumulated weight from the start cell to the neighbor cell
+                //TODO: Add estimated manhatten distance to target (A* instead of Dijkstra)
+                if (!pathCost.ContainsKey(neighbor) || cost < pathCost[neighbor])
+                {
+                    pathCost[neighbor] = cost; // Update the shortest distance to the neighbor cell
+                    previous[neighbor] = current; // Update the previous cell in the shortest path
+
+                    if (!visited.Contains(neighbor)) // If the neighbor cell has not been visited yet
+                    {
+                        queue.Enqueue(neighbor, cost); // Enqueue the neighbor cell with its updated distance as priority
+                    }
+                }
+            }
+        }
+        //print all cells in previous
+        foreach (var (cell, previousCell) in previous)
+        {
+            logger.LogTrace($"cell = {cell} - previousCell = {previousCell}");
+        }
+
+        var result = new List<Cell>();
+        if (!previous.ContainsKey(targetCell)) // If there is no path from the start cell to the target cell
+        {
+            logger.LogWarning("Hmm - no valid path");
+            return result.ToArray(); // Return an empty array
+        }
+
+        var path = new List<Cell>(); // Create a list to store the cells in the shortest path
+        var currentCell = targetCell; // Start from the target cell
+        while (currentCell != startCell) // Traverse back from the target cell to the start cell
+        {
+            logger.LogTrace($"currentCell = {currentCell}");
+            path.Insert(0, currentCell); // Insert the current cell at the beginning of the path list
+            currentCell = previous[currentCell]; // Move to the previous cell in the shortest path
+        }
+        //path.Insert(0, startCell); // Insert the start cell at the beginning of the path list
+
+        return path.ToArray(); // Convert the path list to an array and return it
+    }
+    
     public IEnumerable<Cell> GetCellContinuations(Cell cell1)
     {
         if (cell1.Out == CellDirection.Unknown)

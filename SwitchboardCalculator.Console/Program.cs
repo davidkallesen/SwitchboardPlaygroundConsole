@@ -60,7 +60,8 @@ switchboard.SetOccupied(new Point(2, 2));
 
 ConsoleHelper.Render(switchboard);
 
-var path = switchboard.FindPathBreadthFirstSearch(startCell, targetCell);
+//var path = switchboard.FindPathBreadthFirstSearch(startCell, targetCell);
+var path = switchboard.FindPathDijkstra(startCell, targetCell);
 
 // Add all cells in the path to existing switchboard and render it again
 foreach (var cell in path)
