@@ -2,18 +2,22 @@
 
 public class Cell : IEquatable<Cell>
 {
-    private static readonly char[,] displayAsciiTemplate = new char[3, 3] 
+    public const int WeightStraight = 20;
+    public const int WeightSoft = 21;
+    public const int WeightHard = 80;
+
+    private static readonly char[,] displayAsciiTemplate = new char[3, 3]
     {
         { '\\', '|', '/' },
         { '-', '*', '-' },
         { '/', '|', '\\' }
     };
 
-    private static readonly CellDirection[,] connectionName = new CellDirection[3, 3] 
+    private static readonly CellDirection[,] connectionName = new CellDirection[3, 3]
     {
             { CellDirection.NW, CellDirection.N, CellDirection.NE },
             { CellDirection.W, CellDirection.Unknown, CellDirection.E },
-            { CellDirection.SW, CellDirection.S, CellDirection.SE }        
+            { CellDirection.SW, CellDirection.S, CellDirection.SE }
     };
 
     private readonly char[,] displayAsciiGrid = new char[3, 3];
@@ -65,6 +69,19 @@ public class Cell : IEquatable<Cell>
     private void UpdateAsciiGrid()
     {
         var weight = CellWeight();
+        switch (weight)
+        {
+            case WeightHard:
+                weight = 4;
+                break;
+            case WeightSoft:
+                weight = 3;
+                break;
+            case WeightStraight:
+                weight = 2;
+                break;
+        }
+
         var weightChar = (weight >= 0) ? (char)(weight + '0') : '*';
         displayAsciiGrid[1, 1] = Decorator == ' ' ? weightChar : Decorator;
 
@@ -121,9 +138,9 @@ public class Cell : IEquatable<Cell>
         var distance = Math.Min(Math.Abs((int)In - (int)Out), 8 - Math.Abs((int)In - (int)Out));
         return distance switch
         {
-            4 => 2,
-            3 => 3,
-            2 => 4,
+            4 => WeightStraight,
+            3 => WeightSoft,
+            2 => WeightHard,
             1 => -1,
             _ => -1
         };

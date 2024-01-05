@@ -27,20 +27,20 @@ public class CellTests
     {
         var cell = new Cell(new Point());
         cell.SetInOut(CellDirection.NW, CellDirection.SE);
-        Assert.Equal(2, cell.CellWeight());
+        Assert.Equal(Cell.WeightStraight, cell.CellWeight());
     }
 
     [Theory]
-    [InlineData(2, CellDirection.W, CellDirection.E)]
-    [InlineData(2, CellDirection.E, CellDirection.W)]
-    [InlineData(2, CellDirection.NW, CellDirection.SE)]
-    [InlineData(2, CellDirection.SE, CellDirection.NW)]
-    [InlineData(3, CellDirection.NW, CellDirection.E)]
-    [InlineData(3, CellDirection.E, CellDirection.NW)]
-    [InlineData(4, CellDirection.E, CellDirection.S)]
-    [InlineData(4, CellDirection.S, CellDirection.E)]
-    [InlineData(4, CellDirection.W, CellDirection.N)]
-    [InlineData(4, CellDirection.N, CellDirection.W)]
+    [InlineData(Cell.WeightStraight, CellDirection.W, CellDirection.E)]
+    [InlineData(Cell.WeightStraight, CellDirection.E, CellDirection.W)]
+    [InlineData(Cell.WeightStraight, CellDirection.NW, CellDirection.SE)]
+    [InlineData(Cell.WeightStraight, CellDirection.SE, CellDirection.NW)]
+    [InlineData(Cell.WeightSoft, CellDirection.NW, CellDirection.E)]
+    [InlineData(Cell.WeightSoft, CellDirection.E, CellDirection.NW)]
+    [InlineData(Cell.WeightHard, CellDirection.E, CellDirection.S)]
+    [InlineData(Cell.WeightHard, CellDirection.S, CellDirection.E)]
+    [InlineData(Cell.WeightHard, CellDirection.W, CellDirection.N)]
+    [InlineData(Cell.WeightHard, CellDirection.N, CellDirection.W)]
     public void CellWeight_ReturnsCorrectWeight_WhenDistanceIsLegal(int expected, CellDirection @in, CellDirection @out)
     {
         var cell = new Cell(new Point());
