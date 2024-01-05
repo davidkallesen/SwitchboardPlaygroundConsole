@@ -263,8 +263,10 @@ public class Switchboard
             foreach (var neighbor in nextCells) // Iterate through each neighbor
             {
                 var weight = neighbor.Weight; // Get the weight of the neighbor cell
+                // Add estimated distance to target (A* improvement of Dijkstra)
+                // var remainingDistance = RemainingDistanceEstimate(neighbor.Location, targetCell.Location);
+                // var cost = pathCost[current] + weight + remainingDistance; // Calculate the accumulated weight from the start cell to the neighbor cell + estimated distance to target
                 var cost = pathCost[current] + weight; // Calculate the accumulated weight from the start cell to the neighbor cell
-                //TODO: Add estimated manhatten distance to target (A* instead of Dijkstra)
                 if (!pathCost.ContainsKey(neighbor) || cost < pathCost[neighbor])
                 {
                     pathCost[neighbor] = cost; // Update the shortest distance to the neighbor cell
@@ -303,6 +305,18 @@ public class Switchboard
         return path.ToArray(); // Convert the path list to an array and return it
     }
     
+    public int RemainingDistanceEstimate(Point start, Point target)
+    {
+
+        //calcululate diagonal distance rounded to integer
+        return 2*(int)Math.Sqrt(Math.Pow(Math.Abs(start.X - target.X), 2) + Math.Pow(Math.Abs(start.Y - target.Y), 2));
+        //TODO: try other distance estimations
+        //Maybe use distance from start.neighbor to target.predecessor
+
+        //Manhattan distance
+        //return Math.Abs(start.X - target.X) + Math.Abs(start.Y - target.Y);
+    }
+
     public IEnumerable<Cell> GetCellContinuations(Cell cell1)
     {
         if (cell1.Out == CellDirection.Unknown)
