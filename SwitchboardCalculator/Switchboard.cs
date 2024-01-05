@@ -171,12 +171,13 @@ public class Switchboard
         var startCell = GetCell(start);
         var targetCell = GetCell(target);
         queue.Enqueue(startCell);
-        visited.Add(startCell);
         path[startCell] = new List<Cell>(); // Initialize the path for the start cell
         Cell? finalCell = null;
         while (queue.Count > 0)
         {
             var current = queue.Dequeue();
+            visited.Add(current);
+
             logger.LogTrace($"current = {current}");
 
             if (IsConnected(current, targetCell))
