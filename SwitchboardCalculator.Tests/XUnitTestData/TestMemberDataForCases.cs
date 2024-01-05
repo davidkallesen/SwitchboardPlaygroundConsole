@@ -31,4 +31,19 @@ internal static class TestMemberDataForCases
             return data;
         }
     }
+
+    public static TheoryData<string> FindPathDijkstra
+    {
+        get
+        {
+            var data = new TheoryData<string>();
+            var caseNames = TestCasesResourcesParser.GetCaseNames();
+            foreach (var caseName in caseNames.Where(x => x.StartsWith(nameof(FindPathDijkstra), StringComparison.Ordinal)))
+            {
+                data.Add(caseName);
+            }
+
+            return data;
+        }
+    }
 }

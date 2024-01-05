@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="TestCasesResources\FindPathBreadthFirstSearch\*.txt" />
+    <EmbeddedResource Include="TestCasesResources\FindPathDijkstra\*.txt" />
     <EmbeddedResource Include="TestCasesResources\TestCaseParser\*.txt" />
   </ItemGroup>
 

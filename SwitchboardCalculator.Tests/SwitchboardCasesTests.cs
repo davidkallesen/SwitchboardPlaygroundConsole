@@ -29,8 +29,8 @@ public class SwitchboardCasesTests
         return Verify(output.GetOutput(), verifySettings);
     }
 
-    // [Theory]
-    // [MemberData(nameof(TestMemberDataForCases.FindPathBreadthFirstSearch), MemberType = typeof(TestMemberDataForCases))]
+    [Theory]
+    [MemberData(nameof(TestMemberDataForCases.FindPathBreadthFirstSearch), MemberType = typeof(TestMemberDataForCases))]
     public Task FindPathBreadthFirstSearch(string caseName)
     {
         // Arrange
@@ -55,7 +55,7 @@ public class SwitchboardCasesTests
     }
 
     [Theory]
-    [MemberData(nameof(TestMemberDataForCases.FindPathBreadthFirstSearch), MemberType = typeof(TestMemberDataForCases))]
+    [MemberData(nameof(TestMemberDataForCases.FindPathDijkstra), MemberType = typeof(TestMemberDataForCases))]
     public Task FindPathDijkstra(string caseName)
     {
         // Arrange
