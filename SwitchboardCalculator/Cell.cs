@@ -146,6 +146,28 @@ public class Cell : IEquatable<Cell>
         };
     }
 
+    // NormalizeDirection should return the direction that is first in the clockwise direction from In to Out
+    // In other words, if In is 0 and Out is 2, then the result should be 0, because 0 is the first direction
+    // and if In is 2 and Out is 0, then the result should be 0 as well.
+    // The tricky part is to get this right when we cross the 0/7 boundary, and
+    // for all 3 tile types (straight, soft and hard).
+    public int NormalizeDirection()
+    {
+        int inDir = (int)In;
+        int outDir = (int)Out;
+
+        int diff = (outDir - inDir + 8) % 8;
+
+        if (diff == 2 || diff == 3 || diff == 4)
+        {
+            return inDir;
+        }
+        else // diff is 5, 6 or 7
+        {
+            return outDir;
+        }
+    }
+
     public override string ToString()
     {
         if (!Occupied && In == CellDirection.Unknown && Out == CellDirection.Unknown && Weight == -1)
